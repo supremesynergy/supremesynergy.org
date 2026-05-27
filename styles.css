@@ -1,11 +1,13 @@
 :root {
   --bg: #0f0e0c;
-  --bg-soft: #18161318;
+  --bg-elev: #161310;
   --fg: #ece6d8;
   --fg-soft: #b8afa0;
+  --fg-dim: #8a8170;
   --accent: #d4af37;
+  --accent-soft: #b89730;
   --rule: #2a2620;
-  --max: 680px;
+  --max: 720px;
 }
 
 * {
@@ -19,7 +21,7 @@ html, body {
   color: var(--fg);
   font-family: ui-serif, Georgia, Cambria, "Times New Roman", Times, serif;
   font-size: 18px;
-  line-height: 1.6;
+  line-height: 1.65;
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
 }
@@ -30,44 +32,51 @@ main {
   padding: 5rem 1.5rem 3rem;
 }
 
+.section-label,
+.eyebrow {
+  font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  font-size: 0.72rem;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: var(--accent);
+  font-weight: 600;
+  margin: 0 0 1.25rem;
+}
+
+/* ---------- Hero ---------- */
+
 .hero {
   text-align: center;
-  padding-bottom: 3rem;
+  padding-bottom: 3.5rem;
   border-bottom: 1px solid var(--rule);
 }
 
 .mark {
   color: var(--accent);
-  margin-bottom: 1.25rem;
+  margin-bottom: 1.5rem;
   display: inline-block;
 }
 
-h1 {
+.hero h1 {
   font-family: ui-serif, Georgia, serif;
-  font-size: clamp(2.25rem, 5vw, 3.25rem);
+  font-size: clamp(2rem, 5.5vw, 3.25rem);
   font-weight: 500;
-  letter-spacing: 0.01em;
-  margin: 0 0 0.35rem;
-}
-
-.tagline {
-  color: var(--accent);
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-  font-size: 0.85rem;
-  margin: 0 0 1.75rem;
-  font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  letter-spacing: -0.005em;
+  line-height: 1.15;
+  margin: 0 0 1.5rem;
 }
 
 .lede {
-  font-size: 1.1rem;
+  font-size: 1.125rem;
   color: var(--fg-soft);
-  max-width: 540px;
+  max-width: 580px;
   margin: 0 auto;
 }
 
+/* ---------- Sections ---------- */
+
 section {
-  padding: 3rem 0;
+  padding: 3.5rem 0;
   border-bottom: 1px solid var(--rule);
 }
 
@@ -75,60 +84,151 @@ section:last-of-type {
   border-bottom: none;
 }
 
-h2 {
-  font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-  font-size: 0.8rem;
-  letter-spacing: 0.22em;
-  text-transform: uppercase;
-  color: var(--fg-soft);
-  font-weight: 600;
-  margin: 0 0 1.5rem;
+section h2 {
+  font-family: ui-serif, Georgia, serif;
+  font-size: clamp(1.5rem, 3.5vw, 2rem);
+  font-weight: 500;
+  letter-spacing: -0.005em;
+  line-height: 1.2;
+  margin: 0 0 1.25rem;
 }
 
-.domains ul {
+section p {
+  color: var(--fg-soft);
+  margin: 0 0 1rem;
+}
+
+section p:last-child {
+  margin-bottom: 0;
+}
+
+/* ---------- Mechanism (S.I.M.) ---------- */
+
+.mech-lede {
+  font-size: 1.05rem;
+  color: var(--fg-soft);
+  margin-bottom: 2rem !important;
+}
+
+.moves {
   list-style: none;
   padding: 0;
   margin: 0;
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 1.75rem 2rem;
+  gap: 1.5rem;
 }
 
-@media (max-width: 520px) {
-  .domains ul {
-    grid-template-columns: 1fr;
-  }
+.moves li {
+  background: var(--bg-elev);
+  border: 1px solid var(--rule);
+  padding: 1.5rem 1.5rem 1.5rem 1.5rem;
+  position: relative;
 }
 
-.domains h3 {
-  font-family: ui-serif, Georgia, serif;
-  font-size: 1.25rem;
-  font-weight: 500;
-  margin: 0 0 0.35rem;
+.moves .num {
+  font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  font-size: 0.72rem;
+  letter-spacing: 0.2em;
   color: var(--accent);
+  display: block;
+  margin-bottom: 0.5rem;
 }
 
-.domains p {
+.moves h3 {
+  font-family: ui-serif, Georgia, serif;
+  font-size: 1.35rem;
+  font-weight: 500;
+  color: var(--fg);
+  margin: 0 0 0.5rem;
+  letter-spacing: 0.01em;
+}
+
+.moves p {
+  margin: 0;
+  font-size: 1rem;
+  color: var(--fg-soft);
+}
+
+/* ---------- Three-Scale Promise ---------- */
+
+.promise-lede {
+  font-size: 1.05rem;
+  margin-bottom: 2rem !important;
+}
+
+.scales {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 2.5rem;
+  display: grid;
+  gap: 1.25rem;
+}
+
+.scales li {
+  border-left: 2px solid var(--accent);
+  padding: 0.25rem 0 0.25rem 1.25rem;
+}
+
+.scales h3 {
+  font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  font-size: 0.78rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--accent);
+  font-weight: 600;
+  margin: 0 0 0.35rem;
+}
+
+.scales p {
   margin: 0;
   color: var(--fg-soft);
-  font-size: 0.98rem;
 }
 
-.signup p {
+.scales strong {
+  color: var(--fg);
+  font-weight: 500;
+}
+
+.quote {
+  font-family: ui-serif, Georgia, serif;
+  font-style: italic;
+  font-size: 1.2rem !important;
+  color: var(--fg) !important;
+  text-align: center;
+  padding: 1.5rem 1rem 0;
+  border-top: 1px solid var(--rule);
+  line-height: 1.45;
+}
+
+/* ---------- Program (CAM) ---------- */
+
+.cohort {
+  margin-top: 1.5rem !important;
+  padding: 1rem 1.25rem;
+  background: var(--bg-elev);
+  border-left: 2px solid var(--accent);
+  font-size: 0.98rem;
   color: var(--fg-soft);
 }
+
+.cohort strong {
+  color: var(--fg);
+  font-weight: 500;
+}
+
+/* ---------- Contact ---------- */
 
 .cta {
   display: inline-block;
-  margin: 0.75rem 0 1rem;
-  padding: 0.85rem 1.5rem;
+  margin-top: 1rem;
+  padding: 0.95rem 1.75rem;
   border: 1px solid var(--accent);
   color: var(--accent);
   text-decoration: none;
-  letter-spacing: 0.08em;
+  letter-spacing: 0.06em;
   font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-  font-size: 0.95rem;
-  transition: background-color 120ms ease, color 120ms ease;
+  font-size: 0.98rem;
+  transition: background-color 150ms ease, color 150ms ease;
 }
 
 .cta:hover {
@@ -136,18 +236,41 @@ h2 {
   color: var(--bg);
 }
 
-.fine {
-  font-size: 0.85rem;
-  color: var(--fg-soft);
-  opacity: 0.8;
-}
+/* ---------- Footer ---------- */
 
 footer {
   max-width: var(--max);
   margin: 0 auto;
   padding: 1.5rem;
   text-align: center;
-  color: var(--fg-soft);
-  font-size: 0.85rem;
+  color: var(--fg-dim);
+  font-size: 0.82rem;
   font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  border-top: 1px solid var(--rule);
+}
+
+.footer-brand {
+  color: var(--accent);
+  letter-spacing: 0.1em;
+  font-weight: 600;
+}
+
+/* ---------- Responsive ---------- */
+
+@media (min-width: 640px) {
+  main {
+    padding: 6rem 2rem 4rem;
+  }
+  .moves {
+    grid-template-columns: repeat(3, 1fr);
+  }
+  .scales {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (max-width: 480px) {
+  body { font-size: 17px; }
+  main { padding: 4rem 1.25rem 2.5rem; }
+  section { padding: 2.5rem 0; }
 }
