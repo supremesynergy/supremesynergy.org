@@ -546,9 +546,11 @@ section p:last-child {
 .form-note {
   font-size: 0.85rem !important;
   color: var(--fg-dim) !important;
-  margin: 0 !important;
+  margin: 0 auto !important;
   font-style: italic;
   font-family: var(--serif);
+  max-width: 520px;
+  text-align: center;
 }
 
 .signup-success {
