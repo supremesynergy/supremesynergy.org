@@ -1,4 +1,4 @@
-# Namecheap DNS Setup — supremesynergy.org
+# Namecheap DNS Setup: supremesynergy.org
 
 The Vercel project is **live** and the domain is **attached**. The only thing missing is pointing Namecheap's DNS at Vercel.
 
@@ -11,7 +11,7 @@ The Vercel project is **live** and the domain is **attached**. The only thing mi
 
 ### 2. Switch to Namecheap BasicDNS (if not already)
 - Click the **Nameservers** tab
-- Confirm it's set to **Namecheap BasicDNS** (or PremiumDNS) — NOT "Custom DNS" or a third-party.
+- Confirm it's set to **Namecheap BasicDNS** (or PremiumDNS), NOT "Custom DNS" or a third-party.
 - If it shows third-party nameservers, change to Namecheap BasicDNS and save.
 
 ### 3. Open Advanced DNS
@@ -61,13 +61,13 @@ If you prefer Vercel to manage the www subdomain via CNAME (which means they can
 |-------|------|------------------------|-----------|
 | CNAME | `www`| `cname.vercel-dns.com.`| Automatic |
 
-Both approaches work. The A-record version above is what Vercel's CLI recommended — simpler and matches the apex configuration.
+Both approaches work. The A-record version above is what Vercel's CLI recommended, simpler and matches the apex configuration.
 
 ---
 
 ## Already done on the Vercel side
 
-For reference, you don't need to do these — they're already set up:
+For reference, you don't need to do these. They're already set up:
 
 - ✅ Vercel project `supremesynergy` created under `supremesynergy-s-projects`
 - ✅ Production deployment live at https://supremesynergy.vercel.app
@@ -81,7 +81,7 @@ For reference, you don't need to do these — they're already set up:
 
 Currently the site deploys via `vercel deploy --prod` from your local machine. To enable automatic deploys from GitHub pushes:
 
-1. Authenticate GitHub CLI: `gh auth login --web` (in your own terminal — device flow needs you to authorize)
+1. Authenticate GitHub CLI: `gh auth login --web` (in your own terminal, since device flow needs you to authorize)
 2. Push the local commits: `cd ~/Code/supremesynergy.org && git push -u origin main`
 3. In Vercel dashboard → project settings → Git → connect GitHub → select `supremesynergy/supremesynergy.org`
 

@@ -76,6 +76,28 @@ main {
   margin: 0 auto;
 }
 
+.hero-cta {
+  display: inline-block;
+  margin-top: 2rem;
+  padding: 0.5rem 0;
+  color: var(--accent);
+  text-decoration: none;
+  font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  font-size: 0.95rem;
+  letter-spacing: 0.04em;
+  border-bottom: 1px solid var(--accent);
+  transition: color 150ms ease, border-color 150ms ease;
+}
+
+.hero-cta:hover {
+  color: var(--fg);
+  border-color: var(--fg);
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
 /* ---------- Sections ---------- */
 
 section {
