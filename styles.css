@@ -89,19 +89,9 @@ main {
   color: var(--accent);
   font-weight: 600;
   margin: 0 0 1.5rem;
-  display: inline-block;
+  display: block;
   position: relative;
-}
-
-.section-label::after {
-  content: "";
-  display: inline-block;
-  width: 24px;
-  height: 1px;
-  background: var(--accent);
-  vertical-align: middle;
-  margin-left: 0.75rem;
-  opacity: 0.5;
+  text-align: center;
 }
 
 /* ============================================================
@@ -239,6 +229,7 @@ section {
   padding: var(--space-lg) 0;
   border-bottom: none;
   position: relative;
+  text-align: center;
 }
 
 section h2 {
@@ -250,13 +241,15 @@ section h2 {
   margin: 0 0 1.5rem;
   color: var(--fg);
   font-variation-settings: "opsz" 48;
+  text-align: center;
 }
 
 section p {
   color: var(--fg-soft);
-  margin: 0 0 1.1rem;
+  margin: 0 auto 1.1rem;
   font-family: var(--serif);
   font-variation-settings: "opsz" 16;
+  max-width: 580px;
 }
 
 section p:last-child {
@@ -305,6 +298,7 @@ section p:last-child {
   position: relative;
   overflow: hidden;
   transition: border-color 250ms ease, transform 250ms ease;
+  text-align: left;
 }
 
 .moves li:hover {
@@ -346,6 +340,7 @@ section p:last-child {
   line-height: 1.55;
   position: relative;
   z-index: 1;
+  max-width: none;
 }
 
 /* ============================================================
@@ -369,6 +364,7 @@ section p:last-child {
 .scales li {
   padding: 0.35rem 0 0.35rem 1.5rem;
   position: relative;
+  text-align: left;
 }
 
 .scales li::before {
@@ -396,6 +392,8 @@ section p:last-child {
   color: var(--fg-soft);
   font-size: 1rem;
   line-height: 1.55;
+  max-width: none;
+  text-align: left;
 }
 
 .scales strong {
@@ -451,7 +449,7 @@ section p:last-child {
 }
 
 .cohort {
-  margin-top: 2rem !important;
+  margin: 2rem auto 0 !important;
   padding: 1.5rem 1.75rem;
   background: linear-gradient(180deg, var(--bg-card) 0%, var(--bg-elev) 100%);
   border: 1px solid var(--rule);
@@ -459,6 +457,8 @@ section p:last-child {
   font-size: 1rem;
   color: var(--fg-soft);
   position: relative;
+  text-align: left;
+  max-width: 580px;
 }
 
 .cohort strong {
@@ -482,8 +482,10 @@ section p:last-child {
 .signup {
   display: flex;
   gap: 0.65rem;
-  margin: 2rem 0 1rem;
+  margin: 2rem auto 1rem;
   flex-wrap: wrap;
+  justify-content: center;
+  max-width: 520px;
 }
 
 .signup input[type="email"] {
@@ -549,11 +551,13 @@ section p:last-child {
 }
 
 .signup-success {
-  margin-top: 1.75rem;
+  margin: 1.75rem auto 0;
   padding: 1.5rem 1.75rem;
   background: linear-gradient(180deg, var(--bg-card) 0%, var(--bg-elev) 100%);
   border: 1px solid var(--rule);
   border-left: 2px solid var(--accent);
+  max-width: 520px;
+  text-align: left;
 }
 
 .signup-success p {
@@ -682,15 +686,85 @@ footer {
   }
 }
 
+@media (max-width: 600px) {
+  .hero h1 {
+    font-size: clamp(1.85rem, 7vw, 2.5rem);
+    letter-spacing: -0.015em;
+  }
+  .hero h1 br {
+    display: none;
+  }
+  .lede {
+    font-size: 1.05rem;
+  }
+  .hero-cta {
+    font-size: 0.88rem;
+    letter-spacing: 0.05em;
+  }
+  section h2 {
+    font-size: clamp(1.5rem, 5vw, 1.85rem);
+  }
+}
+
 @media (max-width: 480px) {
   body { font-size: 17px; }
-  main { padding: 3.5rem 1.25rem 2rem; }
-  section { padding: 2rem 0; }
-  .hero { padding: 1.5rem 0 3rem; }
+  main { padding: 3rem 1.25rem 1.75rem; }
+  section { padding: 1.75rem 0; }
+  .hero { padding: 1rem 0 2.5rem; }
   .mark { width: 110px; height: 110px; }
   .hero-glow { width: 400px; height: 400px; }
-  .moves .num { font-size: 2.5rem; }
-  .moves li { padding: 2rem 1.25rem 1.5rem; }
+  .moves { gap: 1.25rem; }
+  .moves .num { font-size: 2.75rem; }
+  .moves li { padding: 2.25rem 1.5rem 1.5rem; }
+  .scales { gap: 1.25rem; margin-bottom: 2rem; }
+  .signup {
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+  .signup input[type="email"],
+  .signup button {
+    width: 100%;
+    flex: 1 1 100%;
+    min-height: 50px;
+  }
+  .signup input[type="email"] {
+    padding: 0.95rem 1.1rem;
+    font-size: 1rem;
+  }
+  .signup button {
+    padding: 1rem 1.5rem;
+    font-size: 0.9rem;
+  }
+  .cta {
+    min-height: 50px;
+    display: inline-flex;
+    align-items: center;
+    padding: 0.85rem 1.6rem;
+    font-size: 0.92rem;
+  }
+  .hero-cta {
+    padding: 0.85rem 0;
+  }
+  .ornament { padding: 1rem 0; }
+  .quote {
+    font-size: 1.15rem !important;
+    padding: 1.5rem 0.5rem 0.5rem;
+  }
+  .quote::before {
+    margin-bottom: 1rem;
+  }
+  .quote::after {
+    margin-top: 1rem;
+  }
+  .cohort {
+    padding: 1.25rem 1.4rem;
+    font-size: 0.95rem;
+  }
+  footer {
+    padding: 1.5rem 1.25rem 2rem;
+    font-size: 0.75rem;
+    line-height: 1.8;
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
