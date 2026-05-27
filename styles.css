@@ -1,0 +1,153 @@
+:root {
+  --bg: #0f0e0c;
+  --bg-soft: #18161318;
+  --fg: #ece6d8;
+  --fg-soft: #b8afa0;
+  --accent: #d4af37;
+  --rule: #2a2620;
+  --max: 680px;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+  background: var(--bg);
+  color: var(--fg);
+  font-family: ui-serif, Georgia, Cambria, "Times New Roman", Times, serif;
+  font-size: 18px;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+main {
+  max-width: var(--max);
+  margin: 0 auto;
+  padding: 5rem 1.5rem 3rem;
+}
+
+.hero {
+  text-align: center;
+  padding-bottom: 3rem;
+  border-bottom: 1px solid var(--rule);
+}
+
+.mark {
+  color: var(--accent);
+  margin-bottom: 1.25rem;
+  display: inline-block;
+}
+
+h1 {
+  font-family: ui-serif, Georgia, serif;
+  font-size: clamp(2.25rem, 5vw, 3.25rem);
+  font-weight: 500;
+  letter-spacing: 0.01em;
+  margin: 0 0 0.35rem;
+}
+
+.tagline {
+  color: var(--accent);
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  font-size: 0.85rem;
+  margin: 0 0 1.75rem;
+  font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+}
+
+.lede {
+  font-size: 1.1rem;
+  color: var(--fg-soft);
+  max-width: 540px;
+  margin: 0 auto;
+}
+
+section {
+  padding: 3rem 0;
+  border-bottom: 1px solid var(--rule);
+}
+
+section:last-of-type {
+  border-bottom: none;
+}
+
+h2 {
+  font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  font-size: 0.8rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--fg-soft);
+  font-weight: 600;
+  margin: 0 0 1.5rem;
+}
+
+.domains ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.75rem 2rem;
+}
+
+@media (max-width: 520px) {
+  .domains ul {
+    grid-template-columns: 1fr;
+  }
+}
+
+.domains h3 {
+  font-family: ui-serif, Georgia, serif;
+  font-size: 1.25rem;
+  font-weight: 500;
+  margin: 0 0 0.35rem;
+  color: var(--accent);
+}
+
+.domains p {
+  margin: 0;
+  color: var(--fg-soft);
+  font-size: 0.98rem;
+}
+
+.signup p {
+  color: var(--fg-soft);
+}
+
+.cta {
+  display: inline-block;
+  margin: 0.75rem 0 1rem;
+  padding: 0.85rem 1.5rem;
+  border: 1px solid var(--accent);
+  color: var(--accent);
+  text-decoration: none;
+  letter-spacing: 0.08em;
+  font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  font-size: 0.95rem;
+  transition: background-color 120ms ease, color 120ms ease;
+}
+
+.cta:hover {
+  background: var(--accent);
+  color: var(--bg);
+}
+
+.fine {
+  font-size: 0.85rem;
+  color: var(--fg-soft);
+  opacity: 0.8;
+}
+
+footer {
+  max-width: var(--max);
+  margin: 0 auto;
+  padding: 1.5rem;
+  text-align: center;
+  color: var(--fg-soft);
+  font-size: 0.85rem;
+  font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+}
