@@ -119,12 +119,30 @@
       </p>
     </section>
 
-    <section class="contact">
-      <p class="section-label">Get in touch</p>
+    <section class="capture">
+      <p class="section-label">Get on the list</p>
+      <h2>The free 5-Day Challenge — coming soon.</h2>
       <p>
-        If the founding cohort is full when you reach out, you'll be the first
-        invited to cohort two. Either way, write one line — tell me where you
-        are and what you're trying to move.
+        A live walk-through of the Subconscious Inception Method. Find one
+        program running underneath your patterns, choose a better one, and
+        install it. Free for the first wave.
+      </p>
+      <form class="signup" action="https://app.convertkit.com/forms/9491578/subscriptions" method="post" novalidate>
+        <label for="signup-email" class="visually-hidden">Email address</label>
+        <input id="signup-email" type="email" name="email_address" placeholder="your@email.com" required autocomplete="email" />
+        <button type="submit">Join the list</button>
+      </form>
+      <p class="form-note">I'll send the schedule and Day-1 link the week before. No spam.</p>
+      <div class="signup-success" hidden>
+        <p><strong>You're in.</strong> Watch your inbox for the schedule.</p>
+      </div>
+    </section>
+
+    <section class="contact">
+      <p class="section-label">Or apply directly</p>
+      <p>
+        Reaching out about cohort 1 specifically? Two seats left. Write one
+        line — tell me where you are and what you're trying to move.
       </p>
       <a class="cta" href="mailto:hello@supremesynergy.org?subject=Conscious%20Avatar%20Mastery">
         hello@supremesynergy.org
@@ -145,6 +163,38 @@
 
   <script>
     document.getElementById('year').textContent = new Date().getFullYear();
+
+    // Email capture — submits to ConvertKit without leaving the page
+    (function () {
+      var form = document.querySelector('.signup');
+      if (!form) return;
+      form.addEventListener('submit', function (e) {
+        e.preventDefault();
+        var btn = form.querySelector('button[type="submit"]');
+        var input = form.querySelector('input[type="email"]');
+        var originalLabel = btn.textContent;
+        btn.disabled = true;
+        btn.textContent = 'Joining…';
+        fetch(form.action, {
+          method: 'POST',
+          headers: { 'Accept': 'application/json' },
+          body: new FormData(form)
+        }).then(function (res) {
+          if (res.ok) {
+            form.hidden = true;
+            document.querySelector('.form-note').hidden = true;
+            document.querySelector('.signup-success').hidden = false;
+          } else {
+            btn.disabled = false;
+            btn.textContent = 'Try again';
+            input.focus();
+          }
+        }).catch(function () {
+          btn.disabled = false;
+          btn.textContent = originalLabel;
+        });
+      });
+    })();
   </script>
 </body>
 </html>
