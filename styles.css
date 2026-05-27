@@ -134,10 +134,10 @@ main {
 }
 
 .mark {
-  display: inline-block;
+  display: block;
   width: 140px;
   height: 140px;
-  margin-bottom: 2rem;
+  margin: 0 auto 2rem;
   border-radius: 50%;
   box-shadow:
     0 0 80px rgba(212, 175, 55, 0.22),
@@ -162,9 +162,11 @@ main {
 }
 
 .hero .eyebrow {
+  display: block;
   font-size: 0.78rem;
   letter-spacing: 0.42em;
   margin-bottom: 2rem;
+  text-align: center;
 }
 
 .hero .eyebrow::after {
