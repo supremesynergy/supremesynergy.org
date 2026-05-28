@@ -407,38 +407,6 @@ section p:last-child {
   font-variation-settings: "opsz" 18;
 }
 
-.quote {
-  font-family: var(--serif) !important;
-  font-style: italic;
-  font-size: clamp(1.2rem, 2vw, 1.4rem) !important;
-  color: var(--fg) !important;
-  text-align: center;
-  padding: 2rem 1rem 0.5rem;
-  margin-top: 1rem !important;
-  line-height: 1.45;
-  font-variation-settings: "opsz" 24;
-  position: relative;
-}
-
-.quote::before,
-.quote::after {
-  content: "";
-  display: block;
-  width: 40px;
-  height: 1px;
-  background: var(--accent);
-  margin: 0 auto;
-  opacity: 0.4;
-}
-
-.quote::before {
-  margin-bottom: 1.5rem;
-}
-
-.quote::after {
-  margin-top: 1.5rem;
-}
-
 /* ============================================================
    Program (CAM)
    ============================================================ */
@@ -749,16 +717,6 @@ footer {
     padding: 0.85rem 0;
   }
   .ornament { padding: 1rem 0; }
-  .quote {
-    font-size: 1.15rem !important;
-    padding: 1.5rem 0.5rem 0.5rem;
-  }
-  .quote::before {
-    margin-bottom: 1rem;
-  }
-  .quote::after {
-    margin-top: 1rem;
-  }
   .cohort {
     padding: 1.25rem 1.4rem;
     font-size: 0.95rem;
