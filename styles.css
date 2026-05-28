@@ -117,6 +117,21 @@ main {
   filter: blur(20px);
   pointer-events: none;
   z-index: 0;
+  animation: hero-glow-pulse 11s ease-in-out infinite;
+  will-change: opacity, transform, filter;
+}
+
+@keyframes hero-glow-pulse {
+  0%, 100% {
+    opacity: 0.7;
+    transform: translateX(-50%) scale(1);
+    filter: blur(20px);
+  }
+  50% {
+    opacity: 1;
+    transform: translateX(-50%) scale(1.08);
+    filter: blur(28px);
+  }
 }
 
 .hero > *:not(.hero-glow) {
@@ -134,7 +149,8 @@ main {
     0 0 80px rgba(212, 175, 55, 0.22),
     0 0 30px rgba(212, 175, 55, 0.18),
     0 0 0 1px rgba(212, 175, 55, 0.14);
-  animation: gentle-pulse 6s ease-in-out infinite;
+  animation: gentle-pulse 8s ease-in-out infinite;
+  will-change: box-shadow;
 }
 
 @keyframes gentle-pulse {
@@ -146,9 +162,9 @@ main {
   }
   50% {
     box-shadow:
-      0 0 100px rgba(212, 175, 55, 0.32),
-      0 0 40px rgba(212, 175, 55, 0.24),
-      0 0 0 1px rgba(212, 175, 55, 0.20);
+      0 0 130px rgba(212, 175, 55, 0.42),
+      0 0 50px rgba(212, 175, 55, 0.30),
+      0 0 0 1px rgba(212, 175, 55, 0.28);
   }
 }
 
@@ -173,6 +189,10 @@ main {
   margin: 0 0 1.75rem;
   color: var(--fg);
   font-variation-settings: "opsz" 96;
+}
+
+.hero h1 .line {
+  display: block;
 }
 
 .lede {
@@ -662,8 +682,8 @@ footer {
     font-size: clamp(1.85rem, 7vw, 2.5rem);
     letter-spacing: -0.015em;
   }
-  .hero h1 br {
-    display: none;
+  .hero h1 .line {
+    display: inline;
   }
   .lede {
     font-size: 1.05rem;
@@ -729,7 +749,8 @@ footer {
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .mark {
+  .mark,
+  .hero-glow {
     animation: none;
   }
 }
