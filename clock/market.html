@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Versor × Market — backtest</title>
+  <link rel="stylesheet" href="/clock/styles.css" />
+</head>
+<body>
+  <div class="app">
+    <header class="head">
+      <h1>Versor × Market</h1>
+      <p class="sub">Do the versor / lunar / seasonal cycles line up with anything in the markets? Usually the honest answer is “barely.” That’s the point — see for yourself.</p>
+    </header>
+
+    <div class="banner">
+      ⚠ Research / curiosity tool — <strong>not financial advice</strong>. Past patterns don’t predict future returns. We test many buckets at once, so some “signal” shows up by pure chance (p-values are uncorrected for multiple testing). Don’t trade on this.
+    </div>
+
+    <div class="controls mkt-controls">
+      <label class="ctl"><span class="micro">Market</span>
+        <select id="dataset"><option value="sp500">S&amp;P 500</option><option value="btc">Bitcoin</option></select></label>
+      <label class="ctl"><span class="micro">Forward horizon</span>
+        <select id="horizon"><option value="1" selected>Next day</option><option value="5">5 days</option><option value="20">20 days</option></select></label>
+    </div>
+
+    <div class="chart-wrap"><canvas id="priceChart"></canvas></div>
+    <div id="summary" class="summary"></div>
+    <div id="panels" class="panels"></div>
+
+    <footer class="foot">
+      <p>Method: for each trading day we compute the versor/lunar/solar/weekly phase, take the forward return over the chosen horizon, and average it within each phase bucket. “Spread” = best-minus-worst bucket mean; the p-value is a 300-run permutation test (how often random labels produce a spread that large). Longer horizons overlap, which inflates apparent significance — next-day is the cleanest. *Even a “beyond chance” result here is uncorrected for multiple testing and is not tradeable. <a href="/clock">← back to the clock</a></p>
+    </footer>
+  </div>
+  <script src="/clock/vendor/astronomy.browser.js"></script>
+  <script src="/clock/vendor/prices.js"></script>
+  <script src="/clock/src/engine.js"></script>
+  <script src="/clock/src/market.js"></script>
+</body>
+</html>

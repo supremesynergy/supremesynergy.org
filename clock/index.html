@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Cosmic Versor Clock</title>
+  <link rel="stylesheet" href="/clock/styles.css" />
+</head>
+<body>
+  <div class="app">
+    <header class="head">
+      <h1>Cosmic Versor Clock</h1>
+      <p class="sub">Where are we in the turning? Real ephemeris, the 3·7·12 versor phase, and a reading for the moment.</p>
+    </header>
+
+    <div class="grid">
+      <section class="clock-col">
+        <div class="clock-wrap">
+          <canvas id="clock" aria-label="Cosmic versor clock"></canvas>
+        </div>
+        <div class="controls">
+          <label class="ctl">
+            <span class="micro">Moment</span>
+            <input type="datetime-local" id="dt" />
+          </label>
+          <button id="nowBtn" class="btn">Now</button>
+          <button id="playBtn" class="btn">▶ Play</button>
+          <label class="ctl">
+            <span class="micro">Step</span>
+            <select id="speed">
+              <option value="1">1 day</option>
+              <option value="7" selected>1 week</option>
+              <option value="30">1 month</option>
+            </select>
+          </label>
+          <label class="ctl scrub-ctl">
+            <span class="micro">Time travel <em id="scrubLabel">+0 d</em></span>
+            <input type="range" id="scrub" min="-180" max="180" value="0" />
+          </label>
+        </div>
+      </section>
+
+      <aside class="panel" id="panel"><!-- filled by app.js --></aside>
+    </div>
+
+    <footer class="foot">
+      <details>
+        <summary>About the model</summary>
+        <p>A faithful encoding of the Cosmic Versor-Propagation Cycle's <strong>3·7·12 architecture</strong>, which the sources treat as <em>three independent cycles</em> (3+7+12 = 22; the 7 is algebraically orthogonal to the 12), not nested subdivisions. <strong>The 12</strong> = the annual zodiac (the sky-projection of 12 = 3-phase × 4-quadrant), driven by the Sun. <strong>The versor / 3</strong> = Dollard's four-quadrant rotation operator j (j⁴ = +1) on the lunar cycle: New / First-Qtr / Full / Last-Qtr = j⁰/j¹/j²/j³ = stored-dielectric / changing-magnetic / stored-magnetic / changing-dielectric, with Russell's generation (waxing) → through-zero (Full) → degeneration (waning) arc. <strong>The 7</strong> = the planetary week (the seven double letters / Sefirot). All astronomy is real (vendored <code>astronomy-engine</code>, offline). <strong>Open choices the sources leave unresolved:</strong> the 3-as-arc (Russell) vs 3-as-primitive (Alef · Shin · Mem) reading; the rotation sense; and the 0° calendar anchor (we use the vernal equinox by convention). The reading below is one swappable lens; the market backtest is another.</p>
+      </details>
+      <p class="lenslink">Same engine, another lens → <a href="/clock/market">Versor × Market backtest</a> <span class="dim">(research toy, not advice)</span></p>
+    </footer>
+  </div>
+
+  <script src="/clock/vendor/astronomy.browser.js"></script>
+  <script src="/clock/src/engine.js"></script>
+  <script src="/clock/src/interpret.js"></script>
+  <script src="/clock/src/app.js"></script>
+</body>
+</html>
