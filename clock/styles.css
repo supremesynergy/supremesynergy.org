@@ -248,3 +248,4 @@ canvas#priceChart { display: block; width: 100%; }
 .bp-sgs-row span { font-size: 0.68rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--gold); }
 .bp-sgs-row em { font-style: normal; color: var(--ink); }
 .bp-pop-frame { margin: 16px 0 0; padding-top: 12px; border-top: 1px solid var(--line); font-size: 0.8rem; color: var(--muted); }
+.bp-pop-detail { margin: 12px 0 0; color: var(--muted); line-height: 1.55; }

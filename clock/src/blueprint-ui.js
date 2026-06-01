@@ -172,7 +172,7 @@
         <div class="bp-sgs-row"><span>Shadow</span><em>${esc(gate.shadow)}</em></div>
         <div class="bp-sgs-row"><span>Gift</span><em>${esc(gate.gift)}</em></div>
         <div class="bp-sgs-row"><span>Siddhi</span><em>${esc(gate.siddhi)}</em></div>
-      </div></div>`;
+      </div>${(C.GATE_DETAIL && C.GATE_DETAIL[g]) ? `<p class="bp-pop-detail">${esc(C.GATE_DETAIL[g])}</p>` : ''}</div>`;
   }
   function lineBlock(l, g) {
     const line = C.LINES && C.LINES[l];
@@ -206,11 +206,13 @@
         body: `<p class="bp-pop-lead">${esc(TYPE_NOTE[ds.val] || '')}</p>
           <div class="bp-pop-sec"><div class="bp-pop-h">Strategy</div><p>${esc(t.strategy || '')}</p></div>
           <div class="bp-pop-sec"><div class="bp-pop-h">Aura</div><p>${esc(t.aura || '')}</p></div>
-          <div class="bp-pop-sec"><div class="bp-pop-h">Signpost</div><p>${esc(t.signpost || '')}</p></div>`,
+          <div class="bp-pop-sec"><div class="bp-pop-h">Signpost</div><p>${esc(t.signpost || '')}</p></div>
+          ${(C.TYPE_GUIDE && C.TYPE_GUIDE[ds.val]) ? `<div class="bp-pop-sec"><div class="bp-pop-h">How to use this</div><p>${esc(C.TYPE_GUIDE[ds.val])}</p></div>` : ''}`,
       };
     }
     if (ds.pop === 'authority') {
-      return { title: `Inner Authority · ${ds.val}`, body: `<p class="bp-pop-lead">${esc((C.AUTHORITIES && C.AUTHORITIES[ds.val]) || AUTH_NOTE[ds.val] || '')}</p>` };
+      const guide = (C.AUTH_GUIDE && C.AUTH_GUIDE[ds.val]) || '';
+      return { title: `Inner Authority · ${ds.val}`, body: `<p class="bp-pop-lead">${esc((C.AUTHORITIES && C.AUTHORITIES[ds.val]) || AUTH_NOTE[ds.val] || '')}</p>${guide ? `<div class="bp-pop-sec"><div class="bp-pop-h">How to use this</div><p>${esc(guide)}</p></div>` : ''}` };
     }
     if (ds.pop === 'profile') {
       const [a, b] = ds.val.split('/');
@@ -231,9 +233,10 @@
     if (ds.pop === 'channel') {
       const [a, b] = ds.ch.split('-');
       const ga = (C.GATES && C.GATES[a]) || {}, gb = (C.GATES && C.GATES[b]) || {};
+      const info = (C.CHANNEL_INFO && C.CHANNEL_INFO[ds.ch]) || {};
       return {
-        title: `Channel ${ds.ch}`,
-        body: `<p class="bp-pop-lead">A defined channel — a consistent circuit linking two gates you reliably express.</p>
+        title: `Channel ${ds.ch}${info.name ? ' · ' + info.name : ''}`,
+        body: `<p class="bp-pop-lead">${esc(info.detail || 'A defined channel — a consistent circuit linking two gates you reliably express.')}</p>
           <div class="bp-pop-sec"><div class="bp-pop-h">Gate ${esc(a)} · ${esc(ga.name || '')}</div><p>${esc(ga.essence || '')}</p></div>
           <div class="bp-pop-sec"><div class="bp-pop-h">Gate ${esc(b)} · ${esc(gb.name || '')}</div><p>${esc(gb.essence || '')}</p></div>`,
       };
