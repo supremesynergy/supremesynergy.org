@@ -174,10 +174,11 @@
         <div class="bp-sgs-row"><span>Siddhi</span><em>${esc(gate.siddhi)}</em></div>
       </div></div>`;
   }
-  function lineBlock(l) {
+  function lineBlock(l, g) {
     const line = C.LINES && C.LINES[l];
     if (!line) return '';
-    return `<div class="bp-pop-sec"><div class="bp-pop-h">Line ${esc(l)} · ${esc(line.name)}</div><p>${esc(line.theme)}</p></div>`;
+    const specific = (C.GATE_LINES && C.GATE_LINES[g] && C.GATE_LINES[g][l - 1]) || line.theme;
+    return `<div class="bp-pop-sec"><div class="bp-pop-h">Line ${esc(l)} · ${esc(line.name)}</div><p>${esc(specific)}</p></div>`;
   }
   function frameNote() { return C.FRAME ? `<p class="bp-pop-frame">${esc(C.FRAME)}</p>` : ''; }
 
@@ -187,7 +188,7 @@
       const sphere = (BP.SPHERES || []).find((s) => s.key === ds.key) || { name: ds.key, blurb: '' };
       return {
         title: `${sphere.name} · ${g}.${l}`,
-        body: `<p class="bp-pop-lead">${esc(sphere.blurb)}</p>${gateBlock(g)}${lineBlock(l)}${frameNote()}`,
+        body: `<p class="bp-pop-lead">${esc(sphere.blurb)}</p>${gateBlock(g)}${lineBlock(l, g)}${frameNote()}`,
       };
     }
     if (ds.pop === 'act') {
@@ -195,7 +196,7 @@
       const role = (C.BODY_ROLE && C.BODY_ROLE[ds.body]) || '';
       return {
         title: `${name} · ${g}.${l}`,
-        body: `<p class="bp-pop-tag">${esc(ds.src)}</p><p class="bp-pop-lead">${esc(role)}</p>${gateBlock(g)}${lineBlock(l)}${frameNote()}`,
+        body: `<p class="bp-pop-tag">${esc(ds.src)}</p><p class="bp-pop-lead">${esc(role)}</p>${gateBlock(g)}${lineBlock(l, g)}${frameNote()}`,
       };
     }
     if (ds.pop === 'type') {
