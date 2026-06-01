@@ -2,6 +2,7 @@
    center  = LUNAR VERSOR (Dollard j-operator, 4 poles + generation/degeneration arcs)
    middle  = PLANETARY WEEK (7 days)
    outer   = ANNUAL ZODIAC (12) + live planets
+   Plus hover/tap tooltips on every glyph.
    Depends on global Versor (engine.js, interpret.js) + Astronomy (vendor). */
 (function () {
   'use strict';
@@ -13,6 +14,7 @@
   const canvas = document.getElementById('clock');
   const ctx = canvas.getContext('2d');
   const panel = document.getElementById('panel');
+  const tip = document.getElementById('tip');
   const dtInput = document.getElementById('dt');
   const nowBtn = document.getElementById('nowBtn');
   const playBtn = document.getElementById('playBtn');
@@ -25,6 +27,7 @@
   let playing = false, rafId = null, lastT = 0;
   let size = 600, cx = 300, cy = 300, R = 290;
   let stars = [];
+  let hotspots = [];   // { x, y, r, title, sub } in CSS px, rebuilt each render
 
   const currentDate = () => new Date(refDate.getTime() + offsetDays * 86400000);
   const ptFor = (lon, r) => { const a = (lon - 90) * DEG; return [cx + r * Math.cos(a), cy + r * Math.sin(a)]; };
@@ -42,6 +45,7 @@
     ctx.textAlign = 'center'; ctx.textBaseline = 'middle';
     ctx.fillText(text, x, y);
   }
+  function addHotspot(x, y, r, title, sub) { hotspots.push({ x, y, r, title, sub }); }
 
   function resize() {
     const wrap = canvas.parentElement;
@@ -79,16 +83,15 @@
     annulus(0, 180, rIn, rOut); ctx.fillStyle = s.versor.arc.waxing ? 'rgba(95,206,155,0.5)' : 'rgba(95,206,155,0.16)'; ctx.fill();
     annulus(180, 360, rIn, rOut); ctx.fillStyle = !s.versor.arc.waxing ? 'rgba(224,102,75,0.5)' : 'rgba(224,102,75,0.16)'; ctx.fill();
     [0, 90, 180, 270].forEach((p) => { const [a, b] = ptFor(p, rIn), [c, d] = ptFor(p, rOut); ctx.beginPath(); ctx.moveTo(a, b); ctx.lineTo(c, d); ctx.strokeStyle = 'rgba(7,8,17,0.6)'; ctx.lineWidth = 1.5; ctx.stroke(); });
-    // origin-zero (New, top) and through-zero (Full, bottom) markers
     [[0, '#f5c451'], [180, '#cfd6e6']].forEach((m) => { const [x, y] = ptFor(m[0], (rIn + rOut) / 2); ctx.beginPath(); ctx.arc(x, y, R * 0.014, 0, 2 * Math.PI); ctx.fillStyle = m[1]; ctx.fill(); });
-    // pole labels (j-operator + moon name)
     const poleLon = [0, 90, 180, 270];
     s.VERSOR_QUAD.forEach((q, i) => {
       const cur = s.versor.quadrant.index === i;
       label(q.op.split(' ')[0], poleLon[i], R * 0.535, cur ? '#fff' : 'rgba(231,234,245,0.6)', Math.round(R * 0.034), SERIF);
       label(q.moon, poleLon[i], R * 0.495, cur ? 'rgba(245,196,81,0.95)' : 'rgba(139,145,173,0.7)', Math.round(R * 0.022), SANS);
+      const [hx, hy] = ptFor(poleLon[i], R * 0.5);
+      addHotspot(hx, hy, R * 0.085, `${q.moon} moon · ${q.op}`, `${q.field}${cur ? ' · now' : ''}`);
     });
-    // lunar versor hand (starts just outside the moon disc)
     const [hx, hy] = ptFor(s.versor.angle, R * 0.44);
     const [bx, by] = ptFor(s.versor.angle, R * 0.21);
     const grad = ctx.createLinearGradient(bx, by, hx, hy);
@@ -106,7 +109,9 @@
       ctx.fillStyle = cur ? 'rgba(245,196,81,0.15)' : 'rgba(255,255,255,0.03)'; ctx.fill();
       const [a, b] = ptFor(i * step, rIn), [c, d] = ptFor(i * step, rOut); ctx.beginPath(); ctx.moveTo(a, b); ctx.lineTo(c, d); ctx.strokeStyle = 'rgba(255,255,255,0.07)'; ctx.lineWidth = 1; ctx.stroke();
       const w = s.WEEK[i];
+      const [wx, wy] = ptFor(i * step + step / 2, (rIn + rOut) / 2);
       label(w.glyph, i * step + step / 2, (rIn + rOut) / 2, cur ? w.tint : 'rgba(225,230,245,0.5)', Math.round(R * 0.04), SERIF);
+      addHotspot(wx, wy, R * 0.05, `${w.glyph} ${w.planet}-day`, `${w.day} · Sefirah ${w.sefirah}${cur ? ' · today' : ''}`);
     }
     const [px, py] = ptFor(s.week.angle, rOut + R * 0.022);
     ctx.beginPath(); ctx.arc(px, py, R * 0.013, 0, 2 * Math.PI); ctx.fillStyle = '#f5c451'; ctx.fill();
@@ -119,7 +124,9 @@
     for (let i = 0; i < 12; i++) {
       const [x1, y1] = ptFor(i * 30, R * 0.90), [x2, y2] = ptFor(i * 30, R * 0.99);
       ctx.beginPath(); ctx.moveTo(x1, y1); ctx.lineTo(x2, y2); ctx.strokeStyle = 'rgba(255,255,255,0.16)'; ctx.lineWidth = 1; ctx.stroke();
+      const [gx, gy] = ptFor(i * 30 + 15, R * 0.945);
       label(s.SIGNS[i].glyph, i * 30 + 15, R * 0.945, i === si ? '#f5c451' : 'rgba(225,230,245,0.72)', Math.round(R * 0.05), SERIF);
+      addHotspot(gx, gy, R * 0.05, `${s.SIGNS[i].glyph} ${s.SIGNS[i].name}`, i === si ? 'Annual zodiac · ☉ Sun is here' : 'Annual zodiac (the 12)');
     }
     [0.90, 0.99].forEach((f, idx) => { ctx.beginPath(); ctx.arc(cx, cy, R * f, 0, 2 * Math.PI); ctx.strokeStyle = idx ? 'rgba(255,255,255,0.12)' : 'rgba(255,255,255,0.06)'; ctx.lineWidth = 1; ctx.stroke(); });
   }
@@ -136,6 +143,7 @@
       ctx.beginPath(); ctx.moveTo(sx, sy); ctx.lineTo(tx, ty); ctx.strokeStyle = 'rgba(255,255,255,0.10)'; ctx.lineWidth = 1; ctx.stroke();
       ctx.beginPath(); ctx.arc(x, y, R * 0.03, 0, 2 * Math.PI); ctx.fillStyle = 'rgba(7,8,17,0.85)'; ctx.fill(); ctx.strokeStyle = b.tint; ctx.lineWidth = 1.2; ctx.stroke();
       label(b.glyph, b.lon, r, b.tint, Math.round(R * 0.046), SERIF);
+      addHotspot(x, y, R * 0.055, `${b.glyph} ${b.key}`, `${b.sign.glyph} ${b.sign.name} ${b.sign.deg.toFixed(1)}°`);
     });
   }
 
@@ -157,6 +165,7 @@
   function render() {
     if (!V || !window.Astronomy) return;
     const s = V.computeState(currentDate());
+    hotspots = [];
     ctx.clearRect(0, 0, size, size);
     drawBackground();
     drawVersor(s);
@@ -165,6 +174,7 @@
     drawSunPointer(s);
     drawPlanets(s);
     drawMoon(cx, cy, R * 0.20, s.moon.illum, s.moon.waxing);
+    addHotspot(cx, cy, R * 0.20, `${s.moon.phaseName} Moon`, `${Math.round(s.moon.illum * 100)}% lit · ${s.versor.arc.name} · ${s.versor.quadrant.op}`);
     updateReadout(s);
   }
 
@@ -191,6 +201,25 @@
       <table class="bodies"><tbody>${rows}</tbody></table>`;
   }
 
+  // ---- hover / tap tooltips ----
+  function pointerXY(e) {
+    const rect = canvas.getBoundingClientRect();
+    const sx = rect.width ? size / rect.width : 1;
+    return [(e.clientX - rect.left) * sx, (e.clientY - rect.top) * sx];
+  }
+  function hitTest(mx, my) {
+    let best = null, bd = Infinity;
+    for (const h of hotspots) { const d = Math.hypot(mx - h.x, my - h.y); if (d < h.r && d < bd) { bd = d; best = h; } }
+    return best;
+  }
+  function showTip(h) {
+    tip.innerHTML = `<b>${h.title}</b>${h.sub ? `<span>${h.sub}</span>` : ''}`;
+    tip.style.left = (canvas.offsetLeft + h.x) + 'px';
+    tip.style.top = (canvas.offsetTop + h.y - R * 0.06) + 'px';
+    tip.classList.add('show');
+  }
+  function hideTip() { tip.classList.remove('show'); }
+
   function frame(t) {
     if (!playing) return;
     if (t - lastT > 55) { lastT = t; refDate = new Date(refDate.getTime() + (+speedSel.value) * 86400000); dtInput.value = fmtLocal(currentDate()); render(); }
@@ -205,6 +234,9 @@
     nowBtn.addEventListener('click', () => { stopPlay(); refDate = new Date(); offsetDays = 0; scrub.value = 0; scrubLabel.textContent = '+0 d'; dtInput.value = fmtLocal(refDate); render(); });
     scrub.addEventListener('input', () => { offsetDays = +scrub.value; scrubLabel.textContent = (offsetDays >= 0 ? '+' : '') + offsetDays + ' d'; render(); });
     playBtn.addEventListener('click', togglePlay);
+    canvas.addEventListener('mousemove', (e) => { const [mx, my] = pointerXY(e); const h = hitTest(mx, my); if (h) { showTip(h); canvas.style.cursor = 'pointer'; } else { hideTip(); canvas.style.cursor = 'default'; } });
+    canvas.addEventListener('mouseleave', hideTip);
+    canvas.addEventListener('click', (e) => { const [mx, my] = pointerXY(e); const h = hitTest(mx, my); if (h) showTip(h); else hideTip(); });
     window.addEventListener('resize', resize);
     resize();
   }

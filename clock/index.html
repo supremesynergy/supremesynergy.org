@@ -17,10 +17,12 @@
       <section class="clock-col">
         <div class="clock-wrap">
           <canvas id="clock" aria-label="Cosmic versor clock"></canvas>
+          <div id="tip" class="tip" aria-hidden="true"></div>
         </div>
+        <p class="ringkey">Rings, inner → outer: <b>Lunar versor</b> (3) · <b>Planetary week</b> (7) · <b>Annual zodiac</b> (12) — hover any glyph for details</p>
         <div class="controls">
           <label class="ctl">
-            <span class="micro">Moment</span>
+            <span class="micro">Moment <span class="fmt">mm/dd/yyyy</span></span>
             <input type="datetime-local" id="dt" />
           </label>
           <button id="nowBtn" class="btn">Now</button>
