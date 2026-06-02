@@ -138,6 +138,15 @@
         <p>This is a <b>map, not a verdict</b>. <b>Personality</b> (your birth-moment placements) is the conscious, awareness side of your <b>Energetic Feedback Loop</b> — the part you can see and steer. <b>Design</b> (the placements ~88° of solar arc earlier) is the unconscious, regulation side that runs beneath choosing. Each gate's <b>Shadow → Gift → Siddhi</b> is one rung of the <b>Polarity</b> spectrum: the same theme as fear, as balanced power, or as its highest octave. Hold every line as a hypothesis to <b>test against lived experience</b> — your life is the territory; this is only the map.</p>
       </div>
 
+      <div class="bp-chart panel">
+        <h3>Your birth chart</h3>
+        <div class="bp-chart-grid">
+          <div class="bp-clock-wrap"><canvas id="bp-clock" aria-label="Natal versor clock"></canvas><p class="bp-legend"><span class="bp-dot p"></span> Personality · <span class="bp-dot d"></span> Design · inner ring of gates is the 64-gate wheel</p></div>
+          <div class="bp-centres-map"><h4>Centres &amp; channels</h4><canvas id="bp-centremap" aria-label="Centres and channels"></canvas></div>
+        </div>
+        <button id="bp-download" type="button" class="btn bp-download">⬇ Download chart card</button>
+      </div>
+
       <div class="bp-acts panel">
         <h3>The thirteen activations</h3>
         <div class="bp-actgrid">
@@ -158,6 +167,13 @@
       </div>`;
 
     $('bp-result').hidden = false;
+    if (window.VersorVisuals) {
+      try {
+        const clk = $('bp-clock'); if (clk) VersorVisuals.renderNatalClock(clk, bp);
+        const cm = $('bp-centremap'); if (cm) VersorVisuals.renderCentreMap(cm, bp.hd);
+        const dl = $('bp-download'); if (dl) dl.addEventListener('click', () => VersorVisuals.exportCard(bp));
+      } catch (e) { /* visuals optional */ }
+    }
     $('bp-result').scrollIntoView({ behavior: 'smooth', block: 'start' });
   }
 
@@ -165,9 +181,10 @@
   function gateBlock(g) {
     const gate = C.GATES && C.GATES[g];
     if (!gate) return `<div class="bp-pop-sec"><div class="bp-pop-h">Gate ${esc(g)}</div></div>`;
+    const hex = String.fromCodePoint(0x4DC0 + (Number(g) - 1));
     return `<div class="bp-pop-sec">
-      <div class="bp-pop-h">Gate ${esc(g)} · ${esc(gate.name)}</div>
-      <p class="bp-pop-e">${esc(gate.essence)}</p>
+      <div class="bp-pop-gatehead"><span class="bp-hex" title="I Ching hexagram ${esc(g)}">${hex}</span><div class="bp-pop-gatehead-t"><div class="bp-pop-h">Gate ${esc(g)} · ${esc(gate.name)}</div><p class="bp-pop-e">${esc(gate.essence)}</p></div></div>
+      <div class="bp-spectrum"><div class="bp-spectrum-bar"></div><div class="bp-spectrum-labels"><span>Shadow</span><span>Gift</span><span>Siddhi</span></div></div>
       <div class="bp-sgs">
         <div class="bp-sgs-row"><span>Shadow</span><em>${esc(gate.shadow)}</em></div>
         <div class="bp-sgs-row"><span>Gift</span><em>${esc(gate.gift)}</em></div>
@@ -178,7 +195,8 @@
     const line = C.LINES && C.LINES[l];
     if (!line) return '';
     const specific = (C.GATE_LINES && C.GATE_LINES[g] && C.GATE_LINES[g][l - 1]) || line.theme;
-    return `<div class="bp-pop-sec"><div class="bp-pop-h">Line ${esc(l)} · ${esc(line.name)}</div><p>${esc(specific)}</p></div>`;
+    const ladder = [6, 5, 4, 3, 2, 1].map((n) => `<div class="bp-rung${n === Number(l) ? ' on' : ''}"></div>`).join('');
+    return `<div class="bp-pop-sec"><div class="bp-pop-linehead"><div class="bp-ladder" title="Line ${esc(l)} of 6">${ladder}</div><div class="bp-pop-h">Line ${esc(l)} · ${esc(line.name)}</div></div><p>${esc(specific)}</p></div>`;
   }
   function frameNote() { return C.FRAME ? `<p class="bp-pop-frame">${esc(C.FRAME)}</p>` : ''; }
 
