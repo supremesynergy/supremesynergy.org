@@ -141,7 +141,12 @@
       <div class="bp-chart panel">
         <h3>Your birth chart</h3>
         <div class="bp-chart-grid">
-          <div class="bp-clock-wrap"><canvas id="bp-clock" aria-label="Natal versor clock"></canvas><p class="bp-legend"><span class="bp-dot p"></span> Personality · <span class="bp-dot d"></span> Design · inner ring of gates is the 64-gate wheel</p></div>
+          <div class="bp-clock-wrap">
+            <canvas id="bp-clock" aria-label="Natal versor clock"></canvas>
+            <div class="bp-clock-toggle"><button type="button" data-mode="birth" class="on">Birth sky</button><button type="button" data-mode="now">Today’s transits</button></div>
+            <p class="bp-clock-caption">Your birth sky — the heavens at the moment you were born.</p>
+            <p class="bp-legend"><span class="bp-dot p"></span> Personality · <span class="bp-dot d"></span> Design · inner ring = the 64-gate wheel</p>
+          </div>
           <div class="bp-centres-map"><h4>Centres &amp; channels</h4><canvas id="bp-centremap" aria-label="Centres and channels"></canvas></div>
         </div>
         <button id="bp-download" type="button" class="btn bp-download">⬇ Download chart card</button>

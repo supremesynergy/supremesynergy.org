@@ -257,6 +257,11 @@ canvas#priceChart { display: block; width: 100%; }
 .bp-centres-map { flex: 0 1 340px; max-width: 420px; text-align: center; }
 .bp-centres-map canvas { display: block; width: 100%; }
 .bp-legend { font-size: 0.76rem; color: var(--muted); margin: 12px auto 0; max-width: 42ch; line-height: 1.5; }
+.bp-clock-toggle { display: inline-flex; margin: 16px auto 0; border: 1px solid var(--line); border-radius: 999px; overflow: hidden; }
+.bp-clock-toggle button { background: transparent; border: none; color: var(--muted); font-family: inherit; font-size: 0.8rem; padding: 7px 16px; cursor: pointer; transition: background .15s, color .15s; }
+.bp-clock-toggle button.on { background: rgba(245,196,81,0.16); color: var(--gold); }
+.bp-clock-toggle button:disabled { opacity: 0.4; cursor: not-allowed; }
+.bp-clock-caption { font-size: 0.82rem; color: var(--muted); margin: 12px auto 0; max-width: 44ch; line-height: 1.5; font-style: italic; }
 .bp-dot { display: inline-block; width: 9px; height: 9px; border-radius: 50%; vertical-align: middle; }
 .bp-dot.p { background: #f5c451; } .bp-dot.d { background: #7fb2e8; }
 .bp-download { margin: 22px auto 0; display: block; }
