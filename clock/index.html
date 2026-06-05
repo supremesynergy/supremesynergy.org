@@ -45,6 +45,19 @@
       <aside class="panel" id="panel"><!-- filled by app.js --></aside>
     </div>
 
+    <section class="cycles-panel">
+      <h2 class="cycles-h">Greater cycles</h2>
+      <p class="cycles-sub">The longer turnings the day, month and year nest inside — the outer-planet orbits, the lunar nodes (the eclipse "dragon"), the Jupiter–Saturn great conjunction, the Sun's ~22-year magnetic cycle, and the precession of the equinoxes. Each gauge sweeps once per its period; hover the dial's ☊/☋ and ℞ marks too. <span class="dim">Moves with Now / Play / time-travel.</span></p>
+      <div class="cycles-wrap">
+        <div id="cycles-gauges" class="cycles-gauges"></div>
+        <div class="venus-wrap">
+          <canvas id="venus-canvas" aria-label="The Venus pentagram"></canvas>
+          <p class="venus-cap"><b>The Venus pentagram</b> — five inferior conjunctions of Venus ≈ 8 years, tracing a five-petalled rose (a Φ signature) across the zodiac.</p>
+        </div>
+      </div>
+      <p class="cycles-note micro">Planet, lunar-node, eclipse, great-conjunction and Venus positions are exact ephemeris. The ☉ solar-magnetic (Hale/Schwabe) cycle and the precessional Age are <b>modeled</b> from known reference dates — approximate, and the Age boundaries are conventional.</p>
+    </section>
+
     <footer class="foot">
       <details>
         <summary>About the model</summary>
@@ -59,6 +72,7 @@
   <script src="/clock/vendor/astronomy.browser.js"></script>
   <script src="/clock/src/engine.js"></script>
   <script src="/clock/src/interpret.js"></script>
+  <script src="/clock/src/cycles.js"></script>
   <script src="/clock/src/app.js"></script>
 </body>
 </html>

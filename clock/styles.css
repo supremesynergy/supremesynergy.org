@@ -347,3 +347,23 @@ canvas#priceChart { display: block; width: 100%; }
 @media (max-width: 720px) { .cm-practice-grid { grid-template-columns: 1fr; } }
 .cm-prac span.micro { color: var(--gold); }
 .cm-prac p { margin: 5px 0 0; line-height: 1.55; font-size: 0.9rem; }
+
+/* --- greater cycles (main clock) --- */
+.cycles-panel { margin-top: 34px; padding-top: 26px; border-top: 1px solid var(--line); }
+.cycles-h { font-family: var(--serif); font-weight: 600; font-size: 1.35rem; margin: 0 0 6px; }
+.cycles-sub { color: var(--muted); font-size: 0.9rem; margin: 0 0 20px; max-width: 84ch; line-height: 1.55; }
+.cycles-wrap { display: grid; grid-template-columns: 1fr 320px; gap: 30px; align-items: start; }
+@media (max-width: 880px) { .cycles-wrap { grid-template-columns: 1fr; } }
+.cycles-gauges { display: grid; grid-template-columns: repeat(auto-fill, minmax(120px, 1fr)); gap: 18px 12px; }
+.cyc-gauge { position: relative; text-align: center; }
+.cyc-ring { display: block; margin: 0 auto; }
+.cyc-pct { position: absolute; top: 0; left: 0; right: 0; height: 96px; display: flex; align-items: center; justify-content: center; font-family: var(--serif); font-size: 1.15rem; color: #fff; pointer-events: none; }
+.cyc-name { margin-top: 7px; font-size: 0.84rem; font-weight: 600; color: var(--ink); }
+.cyc-period { font-size: 0.7rem; color: var(--muted); margin-top: 1px; }
+.cyc-sub { font-size: 0.72rem; color: var(--muted); margin-top: 4px; line-height: 1.35; min-height: 2.5em; }
+.venus-wrap { text-align: center; }
+#venus-canvas { display: block; margin: 0 auto; max-width: 100%; }
+.venus-cap { font-size: 0.76rem; color: var(--muted); margin: 12px auto 0; max-width: 36ch; line-height: 1.5; }
+.venus-cap b { color: var(--ink); }
+.cycles-note { margin-top: 20px; color: var(--muted); }
+.cycles-note b { color: #f0d2a8; }
