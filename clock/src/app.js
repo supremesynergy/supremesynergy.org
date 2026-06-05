@@ -131,6 +131,54 @@
     [0.90, 0.99].forEach((f, idx) => { ctx.beginPath(); ctx.arc(cx, cy, R * f, 0, 2 * Math.PI); ctx.strokeStyle = idx ? 'rgba(255,255,255,0.12)' : 'rgba(255,255,255,0.06)'; ctx.lineWidth = 1; ctx.stroke(); });
   }
 
+  // ---- SOLAR SEASON CYCLE (solstices + equinoxes, and where the Sun sits) ----
+  const SEASON_POINTS = [
+    { lon: 0,   solstice: false, name: 'Spring Equinox',  short: 'Spring', tint: '#8fd6a0' },
+    { lon: 90,  solstice: true,  name: 'Summer Solstice', short: 'Summer', tint: '#f5c451' },
+    { lon: 180, solstice: false, name: 'Autumn Equinox',  short: 'Autumn', tint: '#e0a05f' },
+    { lon: 270, solstice: true,  name: 'Winter Solstice', short: 'Winter', tint: '#9ec5f0' },
+  ];
+  const hexA = (hex, a) => { const n = parseInt(hex.slice(1), 16); return `rgba(${(n >> 16) & 255},${(n >> 8) & 255},${n & 255},${a})`; };
+  function drawSunIcon(x, y, r, color) {
+    ctx.save();
+    ctx.strokeStyle = color; ctx.lineWidth = Math.max(1, r * 0.32); ctx.lineCap = 'round';
+    for (let i = 0; i < 8; i++) { const a = i * Math.PI / 4; ctx.beginPath(); ctx.moveTo(x + Math.cos(a) * r * 1.35, y + Math.sin(a) * r * 1.35); ctx.lineTo(x + Math.cos(a) * r * 1.85, y + Math.sin(a) * r * 1.85); ctx.stroke(); }
+    ctx.beginPath(); ctx.arc(x, y, r, 0, 2 * Math.PI); ctx.fillStyle = 'rgba(7,8,17,0.92)'; ctx.fill();
+    ctx.lineWidth = Math.max(1.2, r * 0.32); ctx.strokeStyle = color; ctx.stroke();
+    ctx.beginPath(); ctx.arc(x, y, r * 0.42, 0, 2 * Math.PI); ctx.fillStyle = color; ctx.fill();
+    ctx.restore();
+  }
+  function drawEquinoxIcon(x, y, r, color) {
+    ctx.save();
+    ctx.beginPath(); ctx.arc(x, y, r, 0, 2 * Math.PI); ctx.fillStyle = 'rgba(7,8,17,0.92)'; ctx.fill();
+    ctx.beginPath(); ctx.arc(x, y, r, -Math.PI / 2, Math.PI / 2, false); ctx.closePath(); ctx.fillStyle = color; ctx.fill();
+    ctx.beginPath(); ctx.arc(x, y, r, 0, 2 * Math.PI); ctx.strokeStyle = color; ctx.lineWidth = Math.max(1.2, r * 0.28); ctx.stroke();
+    ctx.restore();
+  }
+  function seasonProgress(s) {
+    const next = ['Summer Solstice', 'Autumn Equinox', 'Winter Solstice', 'Spring Equinox'][s.season.index];
+    const pct = Math.round((s.sun.lon % 90) / 90 * 100);
+    return `${s.season.name} · ${pct}% to ${next}`;
+  }
+  function drawSeasons(s) {
+    const sl = s.sun.lon, sIdx = s.season.index, start = SEASON_POINTS[sIdx];
+    // faint wash over the current season's quadrant of the zodiac ring
+    annulus(sIdx * 90, (sIdx + 1) * 90, R * 0.90, R * 0.99); ctx.fillStyle = hexA(start.tint, 0.07); ctx.fill();
+    // progress arc from the season's opening point round to the Sun (how far into the season)
+    ctx.beginPath(); ctx.arc(cx, cy, R * 0.915, (sIdx * 90 - 90) * DEG, (sl - 90) * DEG, false);
+    ctx.strokeStyle = hexA(start.tint, 0.75); ctx.lineWidth = Math.max(2, R * 0.016); ctx.lineCap = 'round'; ctx.stroke();
+    const [spx, spy] = ptFor(sl, R * 0.915);
+    ctx.beginPath(); ctx.arc(spx, spy, Math.max(2, R * 0.014), 0, 2 * Math.PI); ctx.fillStyle = start.tint; ctx.fill();
+    // the four cardinal turning-points (solstices = sun icon, equinoxes = day/night disc)
+    SEASON_POINTS.forEach((sp) => {
+      const [t0x, t0y] = ptFor(sp.lon, R * 0.90), [t1x, t1y] = ptFor(sp.lon, R * 0.99);
+      ctx.beginPath(); ctx.moveTo(t0x, t0y); ctx.lineTo(t1x, t1y); ctx.strokeStyle = hexA(sp.tint, 0.6); ctx.lineWidth = 1.8; ctx.stroke();
+      const [mx, my] = ptFor(sp.lon, R * 0.945);
+      if (sp.solstice) drawSunIcon(mx, my, R * 0.02, sp.tint); else drawEquinoxIcon(mx, my, R * 0.018, sp.tint);
+      addHotspot(mx, my, R * 0.05, sp.name, sp.solstice ? 'solstice — the Sun’s turning point' : 'equinox — day equals night');
+    });
+  }
+
   function drawPlanets(s) {
     const items = s.bodies.map((b) => ({ ...b })).sort((a, b) => a.lon - b.lon);
     let lastLon = -999, bump = 0; const rBase = R * 0.80;
@@ -171,6 +219,7 @@
     drawVersor(s);
     drawWeek(s);
     drawZodiac(s);
+    drawSeasons(s);
     drawSunPointer(s);
     drawPlanets(s);
     drawMoon(cx, cy, R * 0.20, s.moon.illum, s.moon.waxing);
@@ -196,7 +245,7 @@
       <div class="cycles">
         <div class="cyc lunar"><span class="micro">Lunar versor · the 3</span><b>${s.versor.arc.name} · ${s.versor.quadrant.op}</b><small>${s.versor.quadrant.moon} · ${s.versor.quadrant.field}${extra}</small></div>
         <div class="cyc week"><span class="micro">Planetary week · the 7</span><b>${s.week.glyph} ${s.week.planet}-day</b><small>${s.week.day} · Sefirah ${s.week.sefirah}</small></div>
-        <div class="cyc year"><span class="micro">Annual zodiac · the 12</span><b>${s.twelve.glyph} ${s.twelve.name} ${deg(s.twelve.deg)}</b><small>${s.season.name} · Moon ${s.moon.phaseName} ${pct(s.moon.illum)}%</small></div>
+        <div class="cyc year"><span class="micro">Annual zodiac · the 12</span><b>${s.twelve.glyph} ${s.twelve.name} ${deg(s.twelve.deg)}</b><small>${seasonProgress(s)} · Moon ${s.moon.phaseName} ${pct(s.moon.illum)}%</small></div>
       </div>
       <table class="bodies"><tbody>${rows}</tbody></table>`;
   }
