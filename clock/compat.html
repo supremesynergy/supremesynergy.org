@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="robots" content="noindex,nofollow" />
+  <title>Compatibility · Cosmic Versor Clock</title>
+  <link rel="stylesheet" href="/clock/styles.css" />
+</head>
+<body>
+  <div class="app">
+    <header class="head">
+      <h1>Compatibility</h1>
+      <p class="sub">Two Human-Design + Gene-Keys charts, read together — what connects you, where you’re alike, who leads where, and how to move &amp; decide as a pair. Computed offline from real ephemeris. A mirror for two, not a verdict.</p>
+    </header>
+
+    <form id="compat-form" class="panel bp-form" autocomplete="off">
+      <datalist id="zones"></datalist>
+
+      <div class="cm-people">
+        <fieldset class="cm-person">
+          <legend>Person A</legend>
+          <label class="ctl cm-name-ctl">
+            <span class="micro">Name or label</span>
+            <input type="text" id="a-name" placeholder="You" />
+          </label>
+          <div class="bp-fields">
+            <label class="ctl"><span class="micro">Birth date</span><input type="date" id="a-date" required /></label>
+            <label class="ctl"><span class="micro">Birth time <span class="fmt">24h, local</span></span><input type="time" id="a-time" /></label>
+            <label class="ctl bp-zone-ctl"><span class="micro">Birth timezone</span><input type="text" id="a-zone" list="zones" placeholder="e.g. America/New_York" required /></label>
+          </div>
+          <label class="bp-check"><input type="checkbox" id="a-unknown" /><span>I don’t know this birth time</span></label>
+          <p class="bp-time-note" id="a-time-note" hidden>We’ll estimate at noon. Time-sensitive placements (Sun/Earth/Moon and all <b>lines</b>) will be approximate.</p>
+        </fieldset>
+
+        <fieldset class="cm-person">
+          <legend>Person B</legend>
+          <label class="ctl cm-name-ctl">
+            <span class="micro">Name or label</span>
+            <input type="text" id="b-name" placeholder="Friend" />
+          </label>
+          <div class="bp-fields">
+            <label class="ctl"><span class="micro">Birth date</span><input type="date" id="b-date" required /></label>
+            <label class="ctl"><span class="micro">Birth time <span class="fmt">24h, local</span></span><input type="time" id="b-time" /></label>
+            <label class="ctl bp-zone-ctl"><span class="micro">Birth timezone</span><input type="text" id="b-zone" list="zones" placeholder="e.g. Europe/London" required /></label>
+          </div>
+          <label class="bp-check"><input type="checkbox" id="b-unknown" /><span>I don’t know this birth time</span></label>
+          <p class="bp-time-note" id="b-time-note" hidden>We’ll estimate at noon. Time-sensitive placements (Sun/Earth/Moon and all <b>lines</b>) will be approximate.</p>
+        </fieldset>
+      </div>
+
+      <p class="micro bp-zone-help">Pick each person’s <em>birthplace</em> timezone — historical daylight-saving is handled for you. Everything is computed on your device; nothing is ever sent anywhere.</p>
+      <button type="submit" class="btn bp-go">See the compatibility</button>
+      <p id="compat-error" class="bp-error"></p>
+    </form>
+
+    <section id="compat-result" hidden></section>
+
+    <footer class="foot">
+      <details>
+        <summary>About this reading &amp; how it’s computed</summary>
+        <p>Each chart is computed in your browser from the vendored <code>astronomy-engine</code> (offline, no API), exactly as on the <a href="/clock/blueprint">Natal Blueprint</a> page. The compatibility reading overlays the two charts and classifies every shared channel as one of the four classic connection types — <strong>electromagnetic</strong> (each holds one end), <strong>companionship</strong> (both hold the whole channel), <strong>dominance</strong> (one holds the whole channel, the other neither end), or <strong>compromise</strong> (one holds the whole channel, the other one end) — then reads centres, types and authorities for the pair. <strong>Lineage:</strong> informed by Human Design &amp; Gene Keys; all interpretive language is our own — a symbolic, hypothesis-generating mirror, not deterministic fact, and not medical, psychological, or relationship advice.</p>
+      </details>
+      <p class="lenslink">Same engine, one chart → <a href="/clock/blueprint">Natal Blueprint</a> <span class="dim">· Human Design + Gene Keys</span></p>
+      <p class="lenslink">Same engine, the live sky → <a href="/clock">Cosmic Versor Clock</a> <span class="dim">· the 3·7·12 transit dial</span></p>
+    </footer>
+  </div>
+
+  <script src="/clock/vendor/astronomy.browser.js"></script>
+  <script src="/clock/src/blueprint.js"></script>
+  <script src="/clock/src/blueprint-codes.js"></script>
+  <script src="/clock/src/blueprint-lines.js"></script>
+  <script src="/clock/src/blueprint-detail.js"></script>
+  <script src="/clock/src/blueprint-visuals.js"></script>
+  <script src="/clock/src/compat.js"></script>
+  <script src="/clock/src/compat-codes.js"></script>
+  <script src="/clock/src/compat-ui.js"></script>
+</body>
+</html>
