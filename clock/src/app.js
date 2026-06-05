@@ -202,6 +202,30 @@
     ctx.save(); ctx.beginPath(); ctx.moveTo(bx, by); ctx.lineTo(hx, hy); ctx.strokeStyle = grad; ctx.lineWidth = 1.5; ctx.setLineDash([4, 5]); ctx.stroke(); ctx.restore();
   }
 
+  // lunar nodes (the eclipse "dragon") on the zodiac ring + a Mercury-retrograde flag
+  function drawNodesAndRx(s) {
+    const VCy = window.VersorCycles; if (!VCy) return;
+    try {
+      const nodes = VCy.lunarNodes(s.date);
+      [['☊', 'North Node', nodes.north, 'the dragon’s head — eclipses gather here'],
+       ['☋', 'South Node', nodes.south, 'the dragon’s tail — the opposite eclipse point']].forEach((m) => {
+        label(m[0], m[2], R * 0.855, 'rgba(207,214,230,0.85)', Math.round(R * 0.036), SERIF);
+        const [x, y] = ptFor(m[2], R * 0.855);
+        addHotspot(x, y, R * 0.045, `${m[0]} ${m[1]}`, m[3]);
+      });
+    } catch (e) { /* nodes optional */ }
+    try {
+      if (VCy.mercuryRetro(s.date)) {
+        const m = s.bodies.find((b) => b.key === 'Mercury');
+        if (m) {
+          label('℞', m.lon, R * 0.745, '#e0664b', Math.round(R * 0.04), SERIF);
+          const [x, y] = ptFor(m.lon, R * 0.745);
+          addHotspot(x, y, R * 0.04, '☿ Mercury retrograde', 'apparent backward motion — review, revisit, revise');
+        }
+      }
+    } catch (e) { /* rx optional */ }
+  }
+
   function drawBackground() {
     const g = ctx.createRadialGradient(cx, cy, R * 0.08, cx, cy, R * 1.08);
     g.addColorStop(0, '#171b33'); g.addColorStop(1, '#0a0b16');
@@ -222,9 +246,11 @@
     drawSeasons(s);
     drawSunPointer(s);
     drawPlanets(s);
+    drawNodesAndRx(s);
     drawMoon(cx, cy, R * 0.20, s.moon.illum, s.moon.waxing);
     addHotspot(cx, cy, R * 0.20, `${s.moon.phaseName} Moon`, `${Math.round(s.moon.illum * 100)}% lit · ${s.versor.arc.name} · ${s.versor.quadrant.op}`);
     updateReadout(s);
+    if (window.VersorCycles) { try { window.VersorCycles.render(s.date); } catch (e) { /* cycles optional */ } }
   }
 
   function updateReadout(s) {
