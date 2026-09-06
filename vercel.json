@@ -2,6 +2,10 @@
   "$schema": "https://openapi.vercel.sh/vercel.json",
   "cleanUrls": true,
   "trailingSlash": false,
+  "rewrites": [
+    { "source": "/map", "destination": "https://supreme-map.vercel.app/map" },
+    { "source": "/map/:path*", "destination": "https://supreme-map.vercel.app/map/:path*" }
+  ],
   "headers": [
     {
       "source": "/(.*)",
