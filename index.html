@@ -3,19 +3,19 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Supreme Synergy — How to change the habits you didn't choose</title>
-  <meta name="description" content="A three-step method for changing the automatic habits you didn't choose. See the habit while it's happening. Choose a better one. Install it. Same process used in trauma therapy." />
+  <title>The Invisible Map: How to Find the Rules Running Your Life and Change Them</title>
+  <meta name="description" content="A free one page guide from Braxton. Everyone has rules in their head about how life works. You did not pick most of them. This shows you how to find one, fix it, and test that the fix is real." />
   <meta name="theme-color" content="#0f0e0c" />
-  <meta property="og:title" content="Supreme Synergy" />
-  <meta property="og:description" content="How to change the habits you didn't choose. A three-step method, taught plainly." />
+  <meta property="og:title" content="The Invisible Map" />
+  <meta property="og:description" content="A free one page guide from Braxton. Everyone has rules in their head about how life works. You did not pick most of them. This shows you how to find one, fix it, and test that the fix is real." />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://supremesynergy.org" />
   <meta property="og:image" content="https://supremesynergy.org/logo.png" />
   <meta property="og:image:width" content="1322" />
   <meta property="og:image:height" content="1322" />
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="Supreme Synergy" />
-  <meta name="twitter:description" content="How to change the habits you didn't choose. A three-step method, taught plainly." />
+  <meta name="twitter:title" content="The Invisible Map" />
+  <meta name="twitter:description" content="How to find the rules running your life and change them. A free one page guide from Braxton." />
   <meta name="twitter:image" content="https://supremesynergy.org/logo.png" />
   <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png" />
   <link rel="icon" type="image/png" sizes="64x64" href="/favicon-64.png" />
@@ -23,7 +23,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,500&family=Inter:wght@400;500;600&display=swap" />
-  <link rel="stylesheet" href="/styles.css?v=3" />
+  <link rel="stylesheet" href="/styles.css?v=7" />
 </head>
 <body>
   <main>
@@ -32,15 +32,29 @@
       <div class="hero-glow" aria-hidden="true"></div>
       <img class="mark" src="/logo-512.png" alt="Supreme Synergy" width="140" height="140" />
       <p class="eyebrow">Supreme Synergy</p>
-      <h1><span class="line">How to change the habits</span> <span class="line">you didn't choose.</span></h1>
+      <h1>
+        <span class="title-name">The Invisible Map</span>
+        <span class="title-promise">How to find the rules running your life and change them</span>
+      </h1>
       <p class="lede">
-        Most of what you do every day is automatic. You learned it
-        before you were old enough to decide whether you wanted to.
-        Most of it got installed before you were 7. Some of those
-        automatic habits help you. Some of them hurt you. The ones
-        that hurt you can be changed. This is how.
+        <span class="line">A free one page guide from Braxton.</span>
+        <span class="line">Everyone has rules in their head about how life works.</span>
+        <span class="line">You did not pick most of them.</span>
+        <span class="line">This shows you how to find one, fix it, and test that the fix is real.</span>
       </p>
-      <a class="hero-cta" href="#capture">RSVP for the free 90-min presentation &rarr;</a>
+
+      <!-- ============================================================
+           BLURRED PREVIEW. Swap the src for a PNG render of page one
+           of the real guide before this goes live. The mock is a
+           design study, not the guide. See downloads/guide-preview.svg.
+           ============================================================ -->
+      <a class="peek" href="#capture">
+        <img src="/downloads/guide-preview.svg" alt="The one page guide, shown blurred" />
+        <span class="peek-label">Locked</span>
+      </a>
+      <p class="peek-caption">One page. Yours in about ten seconds.</p>
+
+      <a class="hero-cta" href="#capture">Get the one page guide</a>
     </section>
 
     <div class="ornament" aria-hidden="true">
@@ -52,28 +66,47 @@
     </div>
 
     <section class="problem">
-      <p class="section-label">The problem</p>
-      <p>
-        Here is the problem most people run into.
-      </p>
-      <p>
-        You decide to change something &mdash; your sleep, your eating,
-        your anger, your phone use. It works for a while. Then you
-        go back to what you were doing before. You try again. Same
-        thing. Again.
-      </p>
-      <p>
-        The reason it keeps failing: you are trying to change what
-        you do without changing the automatic habit that makes you
-        do it.
-      </p>
-      <p>
-        The automatic habit is older than the new behavior. So the
-        old one wins.
-      </p>
-      <p>
-        The automatic habit can be changed directly. That is what
-        this is about.
+      <!-- The chart you were given. Its lower portion was never on it. -->
+      <div class="chart-wrap with-line" aria-hidden="true">
+        <svg viewBox="0 0 420 300" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <linearGradient id="fade" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0%" stop-color="#fff" stop-opacity="1" />
+              <stop offset="48%" stop-color="#fff" stop-opacity="1" />
+              <stop offset="86%" stop-color="#fff" stop-opacity="0" />
+            </linearGradient>
+            <mask id="fadeMask">
+              <rect x="0" y="0" width="420" height="300" fill="url(#fade)" />
+            </mask>
+          </defs>
+          <g mask="url(#fadeMask)" fill="none" stroke="currentColor"
+             stroke-linecap="round" stroke-linejoin="round">
+            <rect x="22" y="20" width="376" height="262" stroke-opacity="0.4" stroke-width="1" />
+            <g stroke-opacity="0.1" stroke-width="1">
+              <path d="M22 84h376M22 148h376M22 212h376" />
+              <path d="M116 20v262M210 20v262M304 20v262" />
+            </g>
+            <g stroke-opacity="0.5" stroke-width="1.15">
+              <path d="M108 226c-19-30-11-70 20-90 34-22 84-16 108 12 21 25 19 62-5 84" />
+              <path d="M132 224c-13-22-7-51 15-65 25-16 61-12 78 9 15 18 13 45-4 61" />
+              <path d="M158 222c-8-15-4-33 10-42 17-11 41-8 52 6 10 12 9 30-3 40" />
+            </g>
+            <path d="M184 216c-4-8-1-17 6-21 9-6 21-4 27 3" stroke-opacity="0.75" stroke-width="1.3" />
+            <path d="M64 258c26-14 40-40 52-72 13-35 34-58 66-70 30-11 62-8 88 8"
+                  stroke-opacity="0.85" stroke-width="1.5" stroke-dasharray="7 6" />
+            <circle cx="64" cy="258" r="4" stroke-opacity="0.9" stroke-width="1.5" />
+            <g stroke-opacity="0.55" stroke-width="1.1" transform="translate(342 62)">
+              <circle cx="0" cy="0" r="17" />
+              <path d="M0-24V-9M0 9v15M-24 0h15M9 0h15" />
+              <path d="M0-13 5 0 0 13-5 0Z" stroke-opacity="0.85" />
+            </g>
+          </g>
+        </svg>
+      </div>
+      <p class="inheritance">
+        You were handed a map before you could evaluate it. So were
+        the people who handed it to you. The original was better,
+        and it is still yours to inherit.
       </p>
     </section>
 
@@ -86,27 +119,49 @@
     </div>
 
     <section class="mechanism">
-      <p class="section-label">The method</p>
-      <h2>The Subconscious Inception Method</h2>
-      <p class="mech-lede">
-        The method is called the Subconscious Inception Method.
-        Short name: S.I.M. It has three steps. You do them in order.
-      </p>
-      <ol class="moves">
+      <h2>Three steps. Do them in order.</h2>
+      <ol class="sim-steps">
         <li>
-          <span class="num">01</span>
-          <h3>See</h3>
-          <p>Notice the automatic habit while it is happening. You can only change a habit you have actually noticed. Most of the time you do automatic habits without noticing them, which is why they keep running.</p>
+          <span class="glyph">
+            <svg viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg" fill="none"
+                 stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M4 34c8-3 12-11 17-19" stroke-opacity="0.3" stroke-width="1.2" />
+              <path d="M14 40c9-4 13-14 19-24" stroke-opacity="0.3" stroke-width="1.2" />
+              <circle cx="30" cy="20" r="11" stroke-opacity="0.85" stroke-width="1.5" />
+              <path d="M30 5v6M30 29v6M15 20h6M39 20h6" stroke-opacity="0.85" stroke-width="1.5" />
+              <circle cx="30" cy="20" r="2.4" stroke-opacity="0.95" stroke-width="1.5" />
+            </svg>
+          </span>
+          <h3><span class="ord">01</span>See</h3>
+          <p>Notice the habit while it is happening.</p>
         </li>
         <li>
-          <span class="num">02</span>
-          <h3>Choose</h3>
-          <p>Pick what you want to do instead. Be specific. "Be less anxious" is too vague to install. "When my chest gets tight before class, take three slow breaths" is specific enough.</p>
+          <span class="glyph">
+            <svg viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg" fill="none"
+                 stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M24 44V26" stroke-opacity="0.85" stroke-width="1.6" />
+              <path d="M24 26C24 16 17 12 10 9" stroke-opacity="0.3" stroke-width="1.4"
+                    stroke-dasharray="4 4" />
+              <path d="M24 26C24 16 31 12 38 9" stroke-opacity="0.9" stroke-width="1.6" />
+              <circle cx="38" cy="9" r="3.2" stroke-opacity="0.95" stroke-width="1.5" />
+              <circle cx="10" cy="9" r="2.4" stroke-opacity="0.3" stroke-width="1.3" />
+            </svg>
+          </span>
+          <h3><span class="ord">02</span>Choose</h3>
+          <p>Decide what to do instead. Be specific.</p>
         </li>
         <li>
-          <span class="num">03</span>
-          <h3>Install</h3>
-          <p>Bring up the old habit on purpose. Then, while it is happening, do the new one instead. You have to do this while the old habit is active in your body. Doing it later, when you are calm, does not work. This is the same process used in trauma therapies like EMDR and IFS &mdash; types of therapy where people hold an old memory and a new response at the same time, and the brain updates.</p>
+          <span class="glyph">
+            <svg viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg" fill="none"
+                 stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M8 38h32" stroke-opacity="0.35" stroke-width="1.3" />
+              <path d="M24 38V16" stroke-opacity="0.9" stroke-width="1.6" />
+              <path d="M24 5 33 16H15Z" stroke-opacity="0.9" stroke-width="1.5" />
+              <path d="M14 33c4-3 16-3 20 0" stroke-opacity="0.3" stroke-width="1.2" />
+            </svg>
+          </span>
+          <h3><span class="ord">03</span>Install</h3>
+          <p>Do the new thing while the old feeling is still there.</p>
         </li>
       </ol>
     </section>
@@ -120,82 +175,32 @@
     </div>
 
     <section class="promise">
-      <p class="section-label">What it changes</p>
-      <p class="promise-lede">
-        Changing one of your automatic habits does three things.
-      </p>
-      <ul class="scales">
-        <li>
-          <h3>It changes you</h3>
-          <p>You stop doing the thing you didn't want to do. You start doing something better. Over time you start to feel like you are running your own life, instead of watching yourself do things you didn't choose.</p>
-        </li>
-        <li>
-          <h3>It changes the people around you</h3>
-          <p>Humans copy each other automatically. When someone in a room is calm, the other people in the room get calmer. When someone is anxious, the others get more anxious. This happens without anyone trying. So when you change one of your automatic habits, the people you spend time with &mdash; your family, your friends &mdash; start to shift too. Not because you are trying to fix them. Because their bodies copy yours.</p>
-        </li>
-        <li>
-          <h3>It changes what comes after you</h3>
-          <p>Habits get passed down. If your dad has a bad temper, you probably have to work harder not to have one. If you break a habit in yourself, the people who come after you &mdash; kids you might have one day, or younger siblings, or people you mentor &mdash; don't have to break that same habit. You broke it for them.</p>
-        </li>
-      </ul>
-    </section>
-
-    <div class="ornament" aria-hidden="true">
-      <svg viewBox="0 0 60 8" width="50" height="8">
-        <path d="M 6 4 L 10 0.5 L 14 4 L 10 7.5 Z" opacity="0.55"/>
-        <path d="M 26 4 L 30 0 L 34 4 L 30 8 Z"/>
-        <path d="M 46 4 L 50 0.5 L 54 4 L 50 7.5 Z" opacity="0.55"/>
-      </svg>
-    </div>
-
-    <section class="program">
-      <p class="section-label">For adults who want help with the method</p>
-      <h2>Conscious Avatar Mastery</h2>
-      <p>
-        The full method is taught in a 90-day program for adults.
-        It includes 6 modules, weekly 1-on-1 coaching, weekly
-        group sessions, direct access to the founder, and a
-        refund guarantee.
-      </p>
-      <p>
-        This part is not for kids. It costs money. It is for
-        adults who want a coach to walk them through the three
-        steps in their own life.
-      </p>
-      <p class="cohort">
-        <strong>The first group starts the week of June 2, 2026.</strong>
-        There are 4 spots. 2 are already taken. You apply by emailing me.
-      </p>
-    </section>
-
-    <div class="ornament" aria-hidden="true">
-      <svg viewBox="0 0 60 8" width="50" height="8">
-        <path d="M 6 4 L 10 0.5 L 14 4 L 10 7.5 Z" opacity="0.55"/>
-        <path d="M 26 4 L 30 0 L 34 4 L 30 8 Z"/>
-        <path d="M 46 4 L 50 0.5 L 54 4 L 50 7.5 Z" opacity="0.55"/>
-      </svg>
-    </div>
-
-    <section class="capture" id="capture">
-      <p class="section-label">Free live presentation</p>
-      <h2>See the method, live and in person.</h2>
-      <p>
-        A 90-minute live presentation at Network School in Forest City,
-        Malaysia. I walk through the full Subconscious Inception Method
-        step by step, show you exactly how it works on a real habit,
-        and answer your questions in person.
-      </p>
-      <p>
-        Free to attend. In-person only. Limited seats.
-      </p>
-      <form class="signup" action="https://app.convertkit.com/forms/9491578/subscriptions" method="post" novalidate>
-        <label for="signup-email" class="visually-hidden">Email address</label>
-        <input id="signup-email" type="email" name="email_address" placeholder="your@email.com" required autocomplete="email" />
-        <button type="submit">RSVP</button>
-      </form>
-      <p class="form-note">The date, time, and room land in your inbox once the next session is scheduled. We will not send you spam.</p>
-      <div class="signup-success" hidden>
-        <p><strong>You're in.</strong> Watch your inbox for the date and room.</p>
+      <h2>It does not stop with you.</h2>
+      <div class="reach">
+        <div class="reach-figure" aria-hidden="true">
+          <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" fill="none"
+               stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="100" cy="100" r="88" stroke-opacity="0.22" stroke-width="1.1" />
+            <circle cx="100" cy="100" r="60" stroke-opacity="0.45" stroke-width="1.2" />
+            <circle cx="100" cy="100" r="32" stroke-opacity="0.75" stroke-width="1.4" />
+            <circle cx="100" cy="100" r="4.5" stroke-opacity="1" stroke-width="1.6" />
+            <path d="M100 12v18M100 170v18M12 100h18M170 100h18" stroke-opacity="0.3" stroke-width="1.1" />
+          </svg>
+        </div>
+        <ul class="reach-list">
+          <li>
+            <strong>You</strong>
+            <span>You stop doing what you did not want to do.</span>
+          </li>
+          <li>
+            <strong>The people around you</strong>
+            <span>People copy each other. They change too.</span>
+          </li>
+          <li>
+            <strong>The people after you</strong>
+            <span>Habits get passed down. This one stops with you.</span>
+          </li>
+        </ul>
       </div>
     </section>
 
@@ -207,16 +212,25 @@
       </svg>
     </div>
 
-    <section class="contact">
-      <p class="section-label">Or apply directly</p>
+    <!-- ================================================================
+         THE CAPTURE. The h2 and the line under it are the swappable
+         part. Whatever the download becomes, change them and the
+         filename in thanks.html. The mechanism does not change.
+         ================================================================ -->
+    <section class="capture" id="capture">
+      <h2>Get the one page guide.</h2>
       <p>
-        There are 2 spots left in the first group. Write me one
-        line. Tell me where you are in your life and what habit
-        you are trying to change.
+        The three steps, with one example. Type your email below.
+        The download opens on the next page.
       </p>
-      <a class="cta" href="mailto:hello@supremesynergy.org?subject=Conscious%20Avatar%20Mastery">
-        hello@supremesynergy.org
-      </a>
+
+      <form class="signup" id="signup-form" novalidate>
+        <label for="signup-email" class="visually-hidden">Email address</label>
+        <input id="signup-email" type="email" name="email" placeholder="your@email.com" required autocomplete="email" />
+        <input type="text" name="website" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;width:1px;height:1px;opacity:0;" />
+        <button type="submit">Get the guide</button>
+      </form>
+      <p class="form-note" id="form-note">One email. One download. No spam.</p>
     </section>
 
   </main>
@@ -234,34 +248,57 @@
   <script>
     document.getElementById('year').textContent = new Date().getFullYear();
 
-    // Email capture: submits to ConvertKit without leaving the page
+    // Email capture: posts to /api/subscribe, which appends a row to the
+    // capture sheet, then sends the reader to the download page.
     (function () {
-      var form = document.querySelector('.signup');
+      var form = document.getElementById('signup-form');
       if (!form) return;
+
+      var note = document.getElementById('form-note');
+      var defaultNote = note ? note.textContent : '';
+
       form.addEventListener('submit', function (e) {
         e.preventDefault();
-        var btn = form.querySelector('button[type="submit"]');
+
+        var button = form.querySelector('button[type="submit"]');
         var input = form.querySelector('input[type="email"]');
-        var originalLabel = btn.textContent;
-        btn.disabled = true;
-        btn.textContent = 'Joining…';
-        fetch(form.action, {
+        var honeypot = form.querySelector('input[name="website"]');
+        var originalLabel = button.textContent;
+
+        var email = (input.value || '').trim();
+        if (!email || email.indexOf('@') === -1) {
+          if (note) note.textContent = 'Please enter a valid email address.';
+          input.focus();
+          return;
+        }
+
+        button.disabled = true;
+        button.textContent = 'Sending…';
+        if (note) note.textContent = defaultNote;
+
+        fetch('/api/subscribe', {
           method: 'POST',
-          headers: { 'Accept': 'application/json' },
-          body: new FormData(form)
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            email: email,
+            website: honeypot ? honeypot.value : '',
+            source: 'homepage'
+          })
         }).then(function (res) {
-          if (res.ok) {
-            form.hidden = true;
-            document.querySelector('.form-note').hidden = true;
-            document.querySelector('.signup-success').hidden = false;
-          } else {
-            btn.disabled = false;
-            btn.textContent = 'Try again';
+          return res.json().catch(function () { return {}; }).then(function (data) {
+            if (res.ok) {
+              window.location.href = '/thanks';
+              return;
+            }
+            button.disabled = false;
+            button.textContent = originalLabel;
+            if (note) note.textContent = data.error || 'Something went wrong. Please try again.';
             input.focus();
-          }
+          });
         }).catch(function () {
-          btn.disabled = false;
-          btn.textContent = originalLabel;
+          button.disabled = false;
+          button.textContent = originalLabel;
+          if (note) note.textContent = 'Network error. Please try again.';
         });
       });
     })();

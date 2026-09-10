@@ -1,0 +1,86 @@
+<!--
+  MOCK. This is a design study of the one page guide, used so the blurred
+  preview on the homepage has something to show. It is NOT the guide.
+
+  Before the site goes live: write the real guide, export page one as PNG at
+  roughly 1360x1760, save it as /downloads/guide-preview.png, and point the
+  <img> in index.html at it. Showing a blurred picture of a document that does
+  not exist is showing the reader nothing.
+
+  The layout below is a usable starting design if you want the guide to match
+  the site: dark ground, gold linework, the map at the centre, three steps under it.
+-->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 680 880" width="680" height="880" role="img"
+     aria-label="Design mock of the one page guide">
+  <rect width="680" height="880" fill="#14110d"/>
+  <rect x="26" y="26" width="628" height="828" fill="none" stroke="#d4af37" stroke-opacity="0.28" stroke-width="1.5"/>
+
+  <g fill="#f2ecd9" font-family="Georgia, serif" text-anchor="middle">
+    <text x="340" y="104" font-size="40">The Invisible Map</text>
+    <text x="340" y="140" font-size="19" fill="#c0b59c">How to find the rules running your life</text>
+    <text x="340" y="166" font-size="19" fill="#c0b59c">and change them</text>
+  </g>
+  <path d="M290 192h100" stroke="#d4af37" stroke-opacity="0.5" stroke-width="1.5"/>
+
+  <g fill="none" stroke="#d4af37" stroke-linecap="round" stroke-linejoin="round"
+     transform="translate(340 360)">
+    <rect x="-190" y="-130" width="380" height="260" stroke-opacity="0.3" stroke-width="1.2"/>
+    <g stroke-opacity="0.1" stroke-width="1">
+      <path d="M-190-65h380M-190 0h380M-190 65h380"/>
+      <path d="M-95-130v260M0-130v260M95-130v260"/>
+    </g>
+    <g stroke-opacity="0.55" stroke-width="1.4">
+      <path d="M-118 96c-19-30-11-70 20-90 34-22 84-16 108 12 21 25 19 62-5 84"/>
+      <path d="M-94 94c-13-22-7-51 15-65 25-16 61-12 78 9 15 18 13 45-4 61"/>
+      <path d="M-68 92c-8-15-4-33 10-42 17-11 41-8 52 6 10 12 9 30-3 40"/>
+    </g>
+    <path d="M-162 122c26-14 40-40 52-72 13-35 34-58 66-70 30-11 62-8 88 8"
+          stroke-opacity="0.85" stroke-width="1.8" stroke-dasharray="8 7"/>
+    <circle cx="-162" cy="122" r="5" stroke-opacity="0.9" stroke-width="1.8"/>
+    <g stroke-opacity="0.5" stroke-width="1.2" transform="translate(138 -96)">
+      <circle r="16"/>
+      <path d="M0-23V-9M0 9v14M-23 0h14M9 0h14"/>
+      <path d="M0-12 5 0 0 12-5 0Z" stroke-opacity="0.85"/>
+    </g>
+  </g>
+
+  <g font-family="Georgia, serif" text-anchor="middle">
+    <g transform="translate(150 590)">
+      <text y="0" font-size="13" fill="#8a7124" letter-spacing="2">01</text>
+      <text y="30" font-size="24" fill="#f2ecd9">See</text>
+      <g fill="#c0b59c" opacity="0.5">
+        <rect x="-78" y="48" width="156" height="6" rx="3"/>
+        <rect x="-64" y="64" width="128" height="6" rx="3"/>
+        <rect x="-44" y="80" width="88" height="6" rx="3"/>
+      </g>
+    </g>
+    <g transform="translate(340 590)">
+      <text y="0" font-size="13" fill="#8a7124" letter-spacing="2">02</text>
+      <text y="30" font-size="24" fill="#f2ecd9">Choose</text>
+      <g fill="#c0b59c" opacity="0.5">
+        <rect x="-78" y="48" width="156" height="6" rx="3"/>
+        <rect x="-70" y="64" width="140" height="6" rx="3"/>
+        <rect x="-36" y="80" width="72" height="6" rx="3"/>
+      </g>
+    </g>
+    <g transform="translate(530 590)">
+      <text y="0" font-size="13" fill="#8a7124" letter-spacing="2">03</text>
+      <text y="30" font-size="24" fill="#f2ecd9">Install</text>
+      <g fill="#c0b59c" opacity="0.5">
+        <rect x="-78" y="48" width="156" height="6" rx="3"/>
+        <rect x="-72" y="64" width="144" height="6" rx="3"/>
+        <rect x="-52" y="80" width="104" height="6" rx="3"/>
+      </g>
+    </g>
+  </g>
+
+  <path d="M110 726h460" stroke="#d4af37" stroke-opacity="0.2" stroke-width="1"/>
+  <g fill="#c0b59c" opacity="0.45">
+    <rect x="110" y="748" width="460" height="6" rx="3"/>
+    <rect x="110" y="766" width="430" height="6" rx="3"/>
+    <rect x="110" y="784" width="452" height="6" rx="3"/>
+    <rect x="110" y="802" width="286" height="6" rx="3"/>
+  </g>
+  <text x="340" y="844" font-family="Helvetica, Arial, sans-serif" font-size="11"
+        fill="#877c69" text-anchor="middle" letter-spacing="1.5">SUPREMESYNERGY.ORG</text>
+</svg>

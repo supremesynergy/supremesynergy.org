@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="noindex, nofollow" />
+  <title>Your download &middot; Supreme Synergy</title>
+  <meta name="description" content="Your copy of the one-page guide." />
+  <meta name="theme-color" content="#0f0e0c" />
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png" />
+  <link rel="icon" type="image/png" sizes="64x64" href="/favicon-64.png" />
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,500&family=Inter:wght@400;500;600&display=swap" />
+  <link rel="stylesheet" href="/styles.css?v=7" />
+</head>
+<body>
+  <main>
+
+    <section class="hero">
+      <div class="hero-glow" aria-hidden="true"></div>
+      <img class="mark" src="/logo-512.png" alt="Supreme Synergy" width="140" height="140" />
+      <p class="eyebrow">You are on the list</p>
+      <h1><span class="line">Here is the guide.</span></h1>
+      <p class="lede">
+        One page. Read it once. Then pick one habit and run the
+        three steps on it this week.
+      </p>
+
+      <!-- ============================================================
+           THE DOWNLOAD. Put the file in /downloads/ and point href
+           at it. The filename below is a placeholder.
+           ============================================================ -->
+      <a class="cta" href="/downloads/sim-one-page.pdf" download>
+        Get the guide
+      </a>
+    </section>
+
+    <div class="ornament" aria-hidden="true">
+      <svg viewBox="0 0 60 8" width="50" height="8">
+        <path d="M 6 4 L 10 0.5 L 14 4 L 10 7.5 Z" opacity="0.55"/>
+        <path d="M 26 4 L 30 0 L 34 4 L 30 8 Z"/>
+        <path d="M 46 4 L 50 0.5 L 54 4 L 50 7.5 Z" opacity="0.55"/>
+      </svg>
+    </div>
+
+    <section class="capture">
+      <p class="claim">
+        I write to this list when I have something worth reading,
+        or something worth joining. Not more often than that.
+      </p>
+
+      <!-- ============================================================
+           NEXT STEP SLOT. When the challenge is ready, its button
+           goes here and this becomes the routing page.
+           ============================================================ -->
+    </section>
+
+  </main>
+
+  <footer>
+    <p>
+      <span class="footer-brand">Supreme Synergy</span>
+      &nbsp;&middot;&nbsp;
+      Built by Braxton Luke, The Synergy Architect
+      &nbsp;&middot;&nbsp;
+      &copy; <span id="year"></span>
+    </p>
+  </footer>
+
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
