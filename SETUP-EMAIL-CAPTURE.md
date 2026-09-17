@@ -40,6 +40,25 @@ function doPost(e) {
         .setMimeType(ContentService.MimeType.JSON);
     }
 
+    // Answers from the thank-you page question go to their own tab.
+    if (body.type === 'answer') {
+      var ss = SpreadsheetApp.getActiveSpreadsheet();
+      var tab = ss.getSheetByName('Answers');
+      if (!tab) {
+        tab = ss.insertSheet('Answers', ss.getSheets().length);
+        tab.appendRow(['Timestamp', 'Email', 'Answer', 'Detail']);
+      }
+      tab.appendRow([
+        body.timestamp || new Date().toISOString(),
+        String(body.email || '').trim().toLowerCase(),
+        String(body.answer || ''),
+        String(body.detail || '')
+      ]);
+      return ContentService
+        .createTextOutput(JSON.stringify({ ok: true, answered: true }))
+        .setMimeType(ContentService.MimeType.JSON);
+    }
+
     var email = String(body.email || '').trim().toLowerCase();
     if (!email) {
       return ContentService
@@ -142,6 +161,64 @@ variables are set and that the deployment is newer than they are.
 
 **Until that file exists, the download button 404s.** That is the one thing
 standing between this and being live.
+
+---
+
+## Step 6 — Save the thank-you page answers (about 3 minutes, one time)
+
+`/thanks` asks one question: *What broke the official story for you?* A tap
+posts to `/api/answer`, which sends it to the same Apps Script. If your
+script was set up before this step existed, it does not know what to do
+with answers yet. Add one block:
+
+1. Open the capture Sheet → **Extensions → Apps Script**.
+2. Find the line that starts with `var email =`.
+3. Paste this block **directly above** that line. Do not touch the `SECRET`
+   line or anything else.
+
+```javascript
+    // Answers from the thank-you page question go to their own tab.
+    if (body.type === 'answer') {
+      var ss = SpreadsheetApp.getActiveSpreadsheet();
+      var tab = ss.getSheetByName('Answers');
+      if (!tab) {
+        tab = ss.insertSheet('Answers', ss.getSheets().length);
+        tab.appendRow(['Timestamp', 'Email', 'Answer', 'Detail']);
+      }
+      tab.appendRow([
+        body.timestamp || new Date().toISOString(),
+        String(body.email || '').trim().toLowerCase(),
+        String(body.answer || ''),
+        String(body.detail || '')
+      ]);
+      return ContentService
+        .createTextOutput(JSON.stringify({ ok: true, answered: true }))
+        .setMimeType(ContentService.MimeType.JSON);
+    }
+```
+
+4. Save.
+5. **Deploy → Manage deployments → the pencil (edit) → Version: New version →
+   Deploy.** The `/exec` URL stays the same, so nothing changes in Vercel.
+6. Test: sign up at <https://supremesynergy.org> in a private window, tap an
+   answer on the thank-you page, and check the Sheet. A new tab called
+   **Answers** appears with one row.
+
+**What the codes mean** (column C of the Answers tab):
+
+| Code | Button |
+|---|---|
+| `religion` | The religion I grew up in |
+| `science` | Science that stopped adding up |
+| `experience` | An experience science could not explain |
+| `health` | A health or medical experience |
+| `success` | Success that felt empty |
+| `growth` | Personal growth work that did not stick |
+| `other` | Something else (their words are in column D) |
+
+**Before this step is done,** answers are not lost completely. Each one is
+also written to Vercel → the project → **Logs** (answer and detail only, no
+email), but Vercel keeps logs only briefly, so do Step 6 soon.
 
 ---
 

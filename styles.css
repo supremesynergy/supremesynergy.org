@@ -1008,3 +1008,78 @@ input:focus-visible {
   margin-bottom: 2rem;
   max-width: 380px;
 }
+
+/* ============================================================
+   Thank-you page: the one question
+   ============================================================ */
+
+.ask [hidden] {
+  display: none !important;
+}
+
+.ask-lede {
+  font-size: 1.05rem;
+}
+
+.ask-options {
+  display: grid;
+  gap: 0.6rem;
+  max-width: 520px;
+  margin: 2rem auto 0;
+}
+
+.ask-options button {
+  width: 100%;
+  padding: 0.95rem 1.25rem;
+  background: var(--bg-elev);
+  color: var(--fg);
+  border: 1px solid var(--rule);
+  border-radius: 0;
+  font-family: var(--sans);
+  font-size: 1rem;
+  line-height: 1.4;
+  text-align: left;
+  cursor: pointer;
+  transition: border-color 200ms ease, background-color 200ms ease, transform 200ms ease;
+}
+
+.ask-options button:hover,
+.ask-options button:focus-visible {
+  outline: none;
+  border-color: var(--accent);
+  background: var(--bg-card);
+}
+
+.ask-other input[type="text"] {
+  flex: 1 1 260px;
+  min-width: 0;
+  padding: 1rem 1.25rem;
+  background: var(--bg-elev);
+  color: var(--fg);
+  border: 1px solid var(--rule);
+  border-radius: 0;
+  font-family: var(--sans);
+  font-size: 1rem;
+  -webkit-appearance: none;
+  appearance: none;
+}
+
+.ask-other input[type="text"]:focus {
+  outline: none;
+  border-color: var(--accent);
+  background: var(--bg-card);
+}
+
+.ask-other input[type="text"]::placeholder {
+  color: var(--fg-dim);
+}
+
+.ask-done {
+  text-align: center;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .ask-options button:hover {
+    transform: translateY(-1px);
+  }
+}

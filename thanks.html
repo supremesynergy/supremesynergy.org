@@ -13,7 +13,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,500&family=Inter:wght@400;500;600&display=swap" />
-  <link rel="stylesheet" href="/styles.css?v=7" />
+  <link rel="stylesheet" href="/styles.css?v=8" />
 </head>
 <body>
   <main>
@@ -45,6 +45,41 @@
       </svg>
     </div>
 
+    <!-- ============================================================
+         ONE QUESTION. Asked after signup, never on the form, so it adds
+         no friction to getting on the list. Answers post to /api/answer,
+         which writes them to the "Answers" tab of the capture sheet.
+         The data-answer values are the stored codes. Change the button
+         text freely, but keep the codes stable so counts stay comparable.
+         ============================================================ -->
+    <section class="ask" id="ask">
+      <p class="eyebrow">One question</p>
+      <h2 id="ask-title">What broke the official story for you?</h2>
+      <p class="ask-lede">
+        Tap the one closest to yours. It shapes what I write to this list.
+      </p>
+
+      <div class="ask-options" id="ask-options" role="group" aria-labelledby="ask-title">
+        <button type="button" data-answer="religion">The religion I grew up in</button>
+        <button type="button" data-answer="science">Science that stopped adding up</button>
+        <button type="button" data-answer="experience">An experience science could not explain</button>
+        <button type="button" data-answer="health">A health or medical experience</button>
+        <button type="button" data-answer="success">Success that felt empty</button>
+        <button type="button" data-answer="growth">Personal growth work that did not stick</button>
+        <button type="button" data-answer="other">Something else</button>
+      </div>
+
+      <form class="signup ask-other" id="ask-other" hidden novalidate>
+        <label for="ask-other-text" class="visually-hidden">What was it?</label>
+        <input id="ask-other-text" type="text" maxlength="280" placeholder="What was it?" autocomplete="off" />
+        <button type="submit">Send</button>
+      </form>
+
+      <div class="signup-success ask-done" id="ask-done" hidden>
+        <p><strong>Thank you.</strong> That helps.</p>
+      </div>
+    </section>
+
     <section class="capture">
       <p class="claim">
         I write to this list when I have something worth reading,
@@ -71,6 +106,60 @@
 
   <script>
     document.getElementById('year').textContent = new Date().getFullYear();
+
+    // One question: one tap sends the answer to /api/answer. The email
+    // typed on the homepage is carried over in sessionStorage (never in the
+    // URL) so the answer can be matched to the signup.
+    (function () {
+      var ask = document.getElementById('ask');
+      if (!ask) return;
+
+      var options = document.getElementById('ask-options');
+      var other = document.getElementById('ask-other');
+      var otherInput = document.getElementById('ask-other-text');
+      var done = document.getElementById('ask-done');
+      var sent = false;
+
+      var email = '';
+      try { email = sessionStorage.getItem('ss_email') || ''; } catch (_) {}
+
+      function send(answer, detail) {
+        if (sent) return;
+        sent = true;
+        options.hidden = true;
+        other.hidden = true;
+        done.hidden = false;
+
+        try {
+          fetch('/api/answer', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ answer: answer, detail: detail || '', email: email }),
+            keepalive: true
+          }).catch(function () {});
+        } catch (_) {}
+
+        try { sessionStorage.removeItem('ss_email'); } catch (_) {}
+      }
+
+      options.addEventListener('click', function (e) {
+        var button = e.target.closest('button[data-answer]');
+        if (!button) return;
+        var answer = button.getAttribute('data-answer');
+        if (answer === 'other') {
+          options.hidden = true;
+          other.hidden = false;
+          otherInput.focus();
+          return;
+        }
+        send(answer, '');
+      });
+
+      other.addEventListener('submit', function (e) {
+        e.preventDefault();
+        send('other', (otherInput.value || '').trim());
+      });
+    })();
   </script>
 </body>
 </html>

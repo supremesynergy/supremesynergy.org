@@ -23,7 +23,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,500&family=Inter:wght@400;500;600&display=swap" />
-  <link rel="stylesheet" href="/styles.css?v=7" />
+  <link rel="stylesheet" href="/styles.css?v=8" />
 </head>
 <body>
   <main>
@@ -287,6 +287,8 @@
         }).then(function (res) {
           return res.json().catch(function () { return {}; }).then(function (data) {
             if (res.ok) {
+              // Lets the thank-you page question match its answer to this signup.
+              try { sessionStorage.setItem('ss_email', email.toLowerCase()); } catch (_) {}
               window.location.href = '/thanks';
               return;
             }
