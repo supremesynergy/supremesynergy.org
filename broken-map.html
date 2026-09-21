@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>The Broken Map: It Was Never a Discipline Problem</title>
+  <meta name="description" content="You know exactly what you should do, and you cannot make yourself do it. The Broken Map argues that is a map problem, not a character problem. Founding Reader Edition, $37." />
+  <meta name="theme-color" content="#0a0908" />
+  <meta property="og:title" content="The Broken Map" />
+  <meta property="og:description" content="It was never a discipline problem. You were handed a broken map. Founding Reader Edition of Book 1 by Braxton Luke." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://supremesynergy.org/broken-map" />
+  <meta property="og:image" content="https://supremesynergy.org/logo.png" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png" />
+  <link rel="icon" type="image/png" sizes="64x64" href="/favicon-64.png" />
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,500&family=Inter:wght@400;500;600&display=swap" />
+  <style>
+    :root {
+      --bg: #0a0908; --bg-card: #1a1611; --bg-elev: #14110d;
+      --fg: #f2ecd9; --fg-soft: #c0b59c; --fg-dim: #877c69;
+      --accent: #d4af37; --accent-bright: #e9c860; --accent-deep: #8a7124;
+      --serif: "Fraunces", "Iowan Old Style", Georgia, serif;
+      --sans: "Inter", -apple-system, "Helvetica Neue", Arial, sans-serif;
+    }
+    * { box-sizing: border-box; }
+    html { -webkit-text-size-adjust: 100%; }
+    body {
+      margin: 0; background: var(--bg); color: var(--fg);
+      font-family: var(--sans); font-size: 17px; line-height: 1.65;
+    }
+    main { max-width: 680px; margin: 0 auto; padding: 0 22px 72px; }
+    section { padding: 44px 0; border-top: 1px solid rgba(212, 175, 55, 0.14); }
+    section.hero { border-top: 0; padding-top: 40px; text-align: center; }
+    .eyebrow {
+      font-size: 12px; letter-spacing: 0.24em; text-transform: uppercase;
+      color: var(--accent); margin: 0 0 16px;
+    }
+    h1 {
+      font-family: var(--serif); font-weight: 400; font-size: clamp(34px, 8vw, 50px);
+      line-height: 1.1; letter-spacing: -0.01em; margin: 0 0 22px;
+    }
+    h1 span { display: block; color: var(--accent-bright); }
+    h2 {
+      font-family: var(--serif); font-weight: 400; font-size: clamp(25px, 5.5vw, 32px);
+      line-height: 1.2; margin: 0 0 20px;
+    }
+    p { margin: 0 0 18px; }
+    .lede { font-family: var(--serif); font-style: italic; font-size: 19px; line-height: 1.5; color: var(--fg-soft); margin-bottom: 22px; }
+    .prose p { color: var(--fg-soft); }
+    .prose p.punch { color: var(--fg); font-family: var(--serif); font-size: 22px; line-height: 1.35; }
+
+    .cover {
+      width: 170px; height: 255px; margin: 4px auto 26px; padding: 30px 20px 20px;
+      background: linear-gradient(160deg, #15120d, #050403);
+      border: 1px solid rgba(212, 175, 55, 0.35); border-radius: 4px;
+      box-shadow: 0 24px 60px rgba(0, 0, 0, 0.6), 0 0 80px rgba(212, 175, 55, 0.08);
+      text-align: left; position: relative;
+    }
+    .cover .c-series { white-space: nowrap; font-size: 6.5px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--accent); margin: 0 0 22px; }
+    .cover .c-title { font-family: var(--serif); font-size: 29px; line-height: 1.02; margin: 0; }
+    .cover .c-rule { width: 32px; height: 2px; background: var(--accent); margin: 16px 0 11px; }
+    .cover .c-part { white-space: nowrap; font-family: var(--serif); font-style: italic; font-size: 9.5px; margin: 0 0 3px; }
+    .cover .c-ed { white-space: nowrap; font-size: 6px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--fg-soft); margin: 0; }
+    .cover .c-author { position: absolute; bottom: 18px; left: 20px; font-family: var(--serif); font-size: 10.5px; margin: 0; }
+
+    .buy {
+      display: inline-block; text-decoration: none; text-align: center;
+      background: var(--accent); color: #0a0908; font-weight: 600; font-size: 18px;
+      padding: 17px 34px; border-radius: 6px; min-width: 280px;
+      transition: background 0.15s ease;
+    }
+    .buy:hover, .buy:focus-visible { background: var(--accent-bright); }
+    .buy-note { font-size: 14px; color: var(--fg-dim); margin: 14px 0 0; }
+    .center { text-align: center; }
+
+    ul.points { list-style: none; padding: 0; margin: 0 0 8px; }
+    ul.points li {
+      position: relative; padding: 0 0 0 28px; margin: 0 0 16px; color: var(--fg-soft);
+    }
+    ul.points li::before {
+      content: ""; position: absolute; left: 2px; top: 11px;
+      width: 9px; height: 9px; border: 1.5px solid var(--accent); transform: rotate(45deg);
+    }
+    ul.points li strong { color: var(--fg); font-weight: 600; }
+    ul.points.not li::before { border-color: var(--fg-dim); border-radius: 50%; transform: none; }
+
+    .card {
+      background: var(--bg-card); border: 1px solid rgba(212, 175, 55, 0.18);
+      border-radius: 8px; padding: 26px 24px;
+    }
+    .card p:last-child { margin-bottom: 0; }
+    .excerpt { border-left: 2px solid var(--accent); padding: 4px 0 4px 22px; }
+    .excerpt p { font-family: var(--serif); font-size: 18.5px; line-height: 1.6; color: var(--fg); }
+    .excerpt p.more { font-family: var(--sans); font-size: 14px; font-style: italic; color: var(--fg-dim); margin: 0; }
+    .context { font-family: var(--serif); font-size: 20px; line-height: 1.4; color: var(--fg); margin: 28px 0 28px; }
+    .card .label { font-size: 12px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--accent); margin-bottom: 12px; }
+
+    .closing { font-family: var(--serif); font-size: clamp(24px, 5.5vw, 30px); line-height: 1.3; text-align: center; margin: 0 0 30px; }
+    .closing em { color: var(--accent-bright); font-style: normal; }
+
+    footer { text-align: center; font-size: 13px; color: var(--fg-dim); padding: 0 22px 48px; }
+    footer a { color: var(--fg-soft); }
+  </style>
+</head>
+<body>
+  <main>
+
+    <section class="hero">
+      <p class="eyebrow">Supreme Synergy &middot; Book 1</p>
+      <h1>It was never a discipline problem. <span>You were handed a broken map.</span></h1>
+      <p class="lede">&ldquo;I know exactly what I should do. And I cannot make myself do it.&rdquo;</p>
+
+      <div class="cover" aria-hidden="true">
+        <p class="c-series">Supreme Synergy &middot; Book 1</p>
+        <p class="c-title">The<br />Broken<br />Map</p>
+        <div class="c-rule"></div>
+        <p class="c-part">Part One &middot; The Hollow Hero</p>
+        <p class="c-ed">Founding Reader Edition</p>
+        <p class="c-author">Braxton Luke</p>
+      </div>
+
+      <!-- STRIPE: replace the href below with the live Payment Link. -->
+      <a class="buy" id="buy-top" href="https://buy.stripe.com/5kQcN5e7I5BpfiC4po77O01">Get the Founding Reader Edition &middot; $37</a>
+      <p class="buy-note">One payment. PDF download right after checkout. One sitting, reads well on a phone.</p>
+    </section>
+
+    <section>
+      <p class="eyebrow center">Read the first page</p>
+      <div class="excerpt">
+        <p>You did the work.</p>
+        <p>That is the part nobody warns you about. You read the books. The good ones, not the airport ones. You built the morning routine. You fixed the sleep, mostly. You tried the cold water and the breath work and the journaling, and some of it actually helped. You found the therapist who didn&rsquo;t just nod. You learned the words for what happened to you when you were young, and you said those words out loud to someone, and it loosened something. You earned the thing you set out to earn. From the outside, and on most days from the inside too, you are a person who has it handled.</p>
+        <p>And underneath all of it there is a hum.</p>
+        <p>You know the one. It is very quiet. It does not show up in the photos. It is the thing you feel at maybe four in the afternoon when the meeting ends and the room empties out, or late at night when the house finally goes still and there is no one left to be competent in front of.</p>
+        <p class="more">The Prologue continues in the book.</p>
+      </div>
+    </section>
+
+    <section class="prose">
+      <h2>If that sentence lives in you, read this slowly.</h2>
+      <p>There is a low hum underneath your life. Not failure. You are not failing. By every visible measure you are doing well. But there is a quiet exhaustion that no amount of discipline touches, a sense that you are rowing brilliantly and may be in the wrong boat. You have a drawer full of tools that each work a little, and nothing adds up.</p>
+      <p>You have been told this is a character problem. A willpower problem. A you problem.</p>
+      <p class="punch">It is not. It is a map problem.</p>
+      <p><em>The Broken Map</em> makes one argument: that the map of reality you were handed may have one whole district missing from it. Not lost, the book argues, but removed. And a removed thing leaves a precisely shaped hole, which means the absence you have been feeling is not a wound to nurse. It has a shape.</p>
+    </section>
+
+    <section>
+      <h2>What changes when you read it</h2>
+      <ul class="points">
+        <li><strong>The hum gets a name.</strong> The quiet exhaustion stops being a private defect and becomes a thing with a cause you can point at. That alone takes weight off.</li>
+        <li><strong>You find which one you are.</strong> The book lays out four ways a capable person runs on empty: the King, the Warrior, the Magician, the Lover. Each one hides a real gift, and each one fails in two predictable directions, pushing too hard or going quiet. You will know which one is yours, probably by the second sentence.</li>
+        <li><strong>You learn why willpower kept losing.</strong> By the time you are gripping the wheel and forcing yourself, your mind has already read the situation and loaded the feeling. Willpower arrives after the decision was made. Once you see that, you stop spending your best energy at the one point that cannot win.</li>
+        <li><strong>You put the shame down.</strong> The book makes the case that you are undeveloped, not defective. Those are different problems with different cures, and you have been applying the cure for the wrong one.</li>
+      </ul>
+      <p class="context">If you have spent years and real money trying to change what you do, this is one evening and $37 on the thing underneath that keeps changing it back.</p>
+      <p class="center"><a class="buy" id="buy-mid" href="https://buy.stripe.com/5kQcN5e7I5BpfiC4po77O01">Get the Founding Reader Edition &middot; $37</a></p>
+    </section>
+
+    <section>
+      <h2>What is inside</h2>
+      <ul class="points">
+        <li><strong>The Prologue, &ldquo;The Low Hum.&rdquo;</strong> Why a person who can do extraordinarily hard things in one part of life cannot make themselves do simple things in another, and why the variable that changed is not your character.</li>
+        <li><strong>Chapter Three, &ldquo;The Hollow Hero.&rdquo;</strong> The full portrait of the capable, high-functioning person running hot on a borrowed center, the four forms it takes, and why the insight never sticks: the pattern rebuilds itself every time you think you have found the door.</li>
+      </ul>
+      <div class="card" style="margin-top: 26px;">
+        <p class="label">What this edition is</p>
+        <p>These are the two pieces of Book 1 that stand on their own. The other chapters are the history chapters. They name dates, people and documents, they are still going through a fact check, and they are not part of this purchase.</p>
+        <p>When they are ready, founding readers hear first.</p>
+      </div>
+    </section>
+
+    <section>
+      <h2>This book is for you if</h2>
+      <ul class="points">
+        <li>You are capable, high-functioning, and quietly exhausted in a way discipline does not touch.</li>
+        <li>You have tried productivity, biohacking, somatics, mindset and insight. Each works a little, and nothing adds up.</li>
+        <li>You respect mechanism over hype and are allergic to &ldquo;just pick one and grind.&rdquo;</li>
+        <li>You are spiritually curious under a builder&rsquo;s exterior, and wary of anything too woo.</li>
+      </ul>
+      <h2 style="margin-top: 38px;">It is not for you if</h2>
+      <ul class="points not">
+        <li>You want a five-step fix or a routine to install by Monday. This is a diagnosis, not a protocol.</li>
+        <li>You need every claim to arrive settled and uncontested. This book asks you to entertain a case, then decide.</li>
+        <li>You want comfort that nothing is wrong. This book makes the case that something is, and that it is not you.</li>
+      </ul>
+    </section>
+
+    <section>
+      <div class="card">
+        <p class="label">Said plainly</p>
+        <p>This book will not fix your life, and it does not pretend to. Be suspicious of anyone who says a book did that. What it gives you is harder to undo: you will be able to see that the old map was broken, and roughly where, and you will stop mistaking the friction it generates for a defect in you.</p>
+        <p>If you read it and it is not for you, reply to your receipt within 30 days and I will refund you.</p>
+      </div>
+    </section>
+
+    <section>
+      <h2>Who wrote it</h2>
+      <p style="color: var(--fg-soft);">Braxton Luke is the founder of Supreme Synergy. His work is helping capable people stop optimizing fragments and start building a life where progress in one part reinforces the rest. He synthesizes across physics, depth psychology, somatics and the world&rsquo;s oldest wisdom traditions, credits his sources, and names what he is still uncertain about.</p>
+    </section>
+
+    <section class="center">
+      <p class="closing">You were not broken.<br /><em>You were never initiated.</em></p>
+      <a class="buy" id="buy-bottom" href="https://buy.stripe.com/5kQcN5e7I5BpfiC4po77O01">Get the Founding Reader Edition &middot; $37</a>
+      <p class="buy-note">Secure checkout by Stripe. Instant PDF download.</p>
+    </section>
+
+  </main>
+
+  <footer>
+    <p>Supreme Synergy &middot; Braxton Luke &middot; &copy; <span id="year">2026</span> &middot; <a href="/">supremesynergy.org</a></p>
+  </footer>
+  <script>document.getElementById('year').textContent = new Date().getFullYear();</script>
+</body>
+</html>
