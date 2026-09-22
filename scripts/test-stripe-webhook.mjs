@@ -3,7 +3,7 @@
 import assert from 'node:assert/strict';
 import { createHmac } from 'node:crypto';
 import { Readable } from 'node:stream';
-import { POST, verifyStripeSignature, buildEmail } from '../api/stripe-webhook.mjs';
+import { POST, verifyStripeSignature, buildEmail, buyerFirstName } from '../api/stripe-webhook.mjs';
 
 const SECRET = 'whsec_test_secret';
 const URL_ = 'https://supremesynergy.org/api/stripe-webhook';
@@ -110,6 +110,28 @@ await test('missing name still greets', async () => {
   const r = await webCall(raw, sign(raw));
   assert.equal(r.status, 200);
   assert.match(calls[0].body.text, /^Hi,\n/);
+});
+
+await test('name from Collect customer names (individual_name) wins', async () => {
+  const raw = event({ customer_details: { email: 'x@example.com', name: 'Acme LLC', individual_name: 'Tarah Smith' } });
+  const r = await webCall(raw, sign(raw));
+  assert.equal(r.status, 200);
+  assert.match(calls[0].body.text, /^Hi Tarah,/);
+});
+
+await test('name from collected_information when customer_details has none', async () => {
+  const raw = event({ customer_details: { email: 'x@example.com' }, collected_information: { individual_name: 'Sahil K' } });
+  const r = await webCall(raw, sign(raw));
+  assert.equal(r.status, 200);
+  assert.match(calls[0].body.text, /^Hi Sahil,/);
+});
+
+await test('buyerFirstName falls back in the right order', async () => {
+  assert.equal(buyerFirstName({ customer_details: { individual_name: 'Ann B', name: 'Zed' } }), 'Ann');
+  assert.equal(buyerFirstName({ collected_information: { individual_name: 'Bo C' } }), 'Bo');
+  assert.equal(buyerFirstName({ customer_details: { name: 'Cy D' } }), 'Cy');
+  assert.equal(buyerFirstName({ customer_details: { email: 'x@y.z' } }), '');
+  assert.equal(buyerFirstName({}), '');
 });
 
 await test('bad signature is rejected before anything runs', async () => {

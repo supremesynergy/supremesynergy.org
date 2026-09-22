@@ -138,6 +138,20 @@ function firstName(fullName) {
   return name.length > 40 ? '' : name;
 }
 
+// Stripe's "Collect customer names" option stores the name in
+// collected_information.individual_name (mirrored on customer_details).
+// customer_details.name is the older field and may hold a business name,
+// so it is the last resort, not the first.
+export function buyerFirstName(session) {
+  const details = session.customer_details || {};
+  const collected = session.collected_information || {};
+  for (const candidate of [details.individual_name, collected.individual_name, details.name]) {
+    const name = firstName(candidate);
+    if (name) return name;
+  }
+  return '';
+}
+
 // ---------------------------------------------------------------------------
 // The email. Plain text is the primary copy; the HTML mirrors it.
 
@@ -327,7 +341,7 @@ export async function POST(reqOrRequest, res) {
     console.error('[stripe-webhook] session has no usable email', session.id);
     return respond(res, 200, { ignored: true, reason: 'no email' });
   }
-  const buyer = { email, firstName: firstName(details.name) };
+  const buyer = { email, firstName: buyerFirstName(session) };
 
   try {
     await sendWithResend(session, product, buyer);
