@@ -16,23 +16,36 @@ a month.
 
 ## Step 1 — Resend account, domain, key (15 minutes)
 
+> Done 2026-09-22: `supremesynergy.org` is verified in Resend. Kept for the
+> record and for a second domain. The records below are what Resend asked for
+> that day; copy from the Resend screen, never from a guide.
+
 1. Go to <https://resend.com> and create an account with the email you read.
 2. **Domains → Add Domain** → `supremesynergy.org` → region can stay default.
-3. Resend shows DNS records to add. Open a second tab: Namecheap → Domain List
-   → `supremesynergy.org` → **Manage → Advanced DNS → Add New Record**, and
-   copy each record Resend shows. The usual three:
+3. Resend shows the DNS records to add. Open a second tab: Namecheap → Domain
+   List → `supremesynergy.org` → **Manage → Advanced DNS**. All of them go in
+   the **Host Records** section with **Add New Record**. Domains added to
+   Resend after August 2026 get these four:
 
    | Type | Host (Namecheap) | Value | Note |
    |---|---|---|---|
    | TXT | `resend._domainkey` | the long `p=...` value | DKIM |
-   | MX | `send` | `feedback-smtp.<region>.amazonses.com`, priority 10 | SPF |
-   | TXT | `send` | `v=spf1 include:amazonses.com ~all` | SPF |
+   | CNAME | `send` | `send.<something>.rmta.net` as shown | sending |
+   | CNAME | `rsend` | `rsend.<something>.rmta.net` as shown | sending, note the spelling |
+   | TXT | `_dmarc` | `v=DMARC1; p=none;` | optional |
 
-   Resend shows the full host name; in Namecheap you type only the part before
-   `.supremesynergy.org`. Copy the values exactly from the Resend screen, not
-   from this table. Leave the two existing A records for Vercel alone.
-4. Back in Resend, click **Verify DNS Records**. It can take a few minutes.
-   Wait for the green "Verified".
+   Three things that cost time on 2026-09-22:
+   - In the Host box type only the part before `.supremesynergy.org`.
+   - Resend's older Namecheap guide describes an MX and an SPF TXT on `send`.
+     Do not add those when Resend shows CNAMEs. A CNAME cannot share its host
+     with any other record, so they block each other.
+   - Leave **Mail Settings** on **Email Forwarding**. The CNAMEs do not need
+     Custom MX, and switching to Custom MX drops the five forwarding rows and
+     the root SPF line. If that happened, switch back and they return.
+   - The CNAME values are cut short on the Resend screen with `[...]`; use the
+     copy icon so the whole value comes across.
+4. Back in Resend the rows turn to **Verified** on their own within minutes.
+   The domain status at the top of the page says Verified when all are in.
 5. **API Keys → Create API Key**: name `supremesynergy.org delivery`,
    permission **Sending access**, domain `supremesynergy.org`. Copy the
    `re_...` key now; it is shown once.
