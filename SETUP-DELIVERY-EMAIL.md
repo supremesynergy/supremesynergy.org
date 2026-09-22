@@ -124,18 +124,32 @@ If Stripe shows a 400: the signing secret in Vercel does not match the
 endpoint. If it shows a 500: read the Vercel log line, it names the missing
 variable or the Resend error.
 
-## Step 6 — Deliver to the buyers who came before this (2 minutes each)
+## Step 6 — Deliver to the buyers who came before this
 
-Stripe can replay a past event through the new endpoint, and the email goes
-out as if they had just bought.
+> Done 2026-09-22: the four buyers from Sept 21 were emailed by hand from
+> supremesynergy777@gmail.com. Kept for the record.
 
-1. Stripe → **Developers → Events** (or **Workbench → Events**), find the
-   `checkout.session.completed` event for that purchase.
-2. Open it → **Resend** (or "Send to endpoint") → choose
-   `supremesynergy.org/api/stripe-webhook`.
+Stripe's **Resend** button only appears on an event that already has a
+delivery attempt to the destination. Purchases made before the destination
+existed have none, so the button is not there, and the Workbench shell is
+read-only in live mode. Two routes for those:
 
-Do this for the reader who texted, and for every other buyer so far. Each
-session sends once no matter how many times it is replayed.
+- **By hand.** Stripe → Payments → each payment → copy the customer email.
+  Send them the same text the function sends (the `text` block in
+  `buildEmail`, `api/stripe-webhook.mjs`) from the inbox in `REPLY_TO`.
+- **Stripe CLI** (events up to 30 days old). Install with
+  `brew install stripe/stripe-cli/stripe`, run `stripe login` and approve it
+  in the browser, then per event:
+
+  ```bash
+  stripe events resend evt_XXXXXXXX --webhook-endpoint we_1UILg6EuLudATZzlyNyaFy2x
+  ```
+
+  The second id is the broken-map-delivery destination. Each session sends
+  once no matter how many times it is replayed.
+
+For any purchase made after the destination went live, nothing to do: the
+email went out on its own, and a copy is in the `DELIVERY_BCC` inbox.
 
 ---
 
