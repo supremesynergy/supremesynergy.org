@@ -66,23 +66,31 @@ function buildGuideEmail() {
     '',
     'Every teacher in it is teaching something real. I have learned from all of them. The mistake is not the piece they teach, it is teaching the piece as if it were the whole. Number seven is the one that explains the other six.',
     '',
-    'One ask. When you finish, hit reply and send me the number that landed hardest. Just the number is fine. I read every one, and I am running a live session on this soon. The date goes to the people who reply first.',
+    'One ask. When you finish, hit reply and send me the number that landed hardest. Just the number is fine. I read every one.',
+    '',
+    'I am teaching this live on Thursday October 1, and again in a US evening slot later in October. Reply and I will send you the link for whichever one works.',
     '',
     'Braxton'
   ].join('\n');
 
-  const p = (s) => '<p style="margin:0 0 18px;">' + s + '</p>';
+  // Deliberately styled to look like a plain message typed by a person.
+  // The first version of this email carried a gold CTA button, a branded link
+  // colour and a max-width wrapper, and Gmail filed it under Promotions
+  // (founder's own inbox, 2026-09-24). Almost nobody replies from Promotions,
+  // and a reply is this email's entire job. So: no button, no brand colour,
+  // no wrapper, one link. If it still lands in Promotions, the next move is to
+  // drop `html` from the payload entirely and send text only.
+  const p = (s) => '<p style="margin:0 0 16px;">' + s + '</p>';
   const html = [
-    '<!DOCTYPE html><html><body style="margin:0;padding:24px;background:#ffffff;color:#1a1611;font-family:-apple-system,Segoe UI,Helvetica,Arial,sans-serif;font-size:17px;line-height:1.6;">',
-    '<div style="max-width:560px;margin:0 auto;">',
+    '<!DOCTYPE html><html><body style="font-family:-apple-system,Segoe UI,Helvetica,Arial,sans-serif;font-size:16px;line-height:1.6;color:#222;">',
     p('Here it is.'),
-    '<p style="margin:0 0 24px;"><a href="' + pdfUrl + '" style="display:inline-block;background:#d4af37;color:#0a0908;text-decoration:none;font-weight:600;padding:14px 26px;border-radius:6px;">Open the guide</a></p>',
-    p('The file itself, if you want it directly:<br><a href="' + pdfUrl + '" style="color:#8a6d1a;">' + esc(pdfUrl.replace('https://', '')) + '</a>'),
+    p('The 7 Most Common Mistakes Spiritual Teachers and Coaches Make:<br><a href="' + pdfUrl + '">' + esc(pdfUrl.replace('https://', '')) + '</a>'),
     p('Save it once it opens. On an iPhone, tap the share icon and choose Save to Files or Books. On Android it lands in Downloads. Then it is yours even if you lose this email.'),
     p('Every teacher in it is teaching something real. I have learned from all of them. The mistake is not the piece they teach, it is teaching the piece as if it were the whole. <strong>Number seven is the one that explains the other six.</strong>'),
-    p('<strong>One ask.</strong> When you finish, hit reply and send me the number that landed hardest. Just the number is fine. I read every one, and I am running a live session on this soon. The date goes to the people who reply first.'),
+    p('<strong>One ask.</strong> When you finish, hit reply and send me the number that landed hardest. Just the number is fine. I read every one.'),
+    p('I am teaching this live on Thursday October 1, and again in a US evening slot later in October. Reply and I will send you the link for whichever one works.'),
     p('Braxton'),
-    '</div></body></html>'
+    '</body></html>'
   ].join('');
 
   return {
