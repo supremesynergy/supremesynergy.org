@@ -1,0 +1,241 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>What did your bagel weeks cost? · Supreme Synergy</title>
+  <meta name="description" content="Four numbers: what the coaster cost you last year, and what one extra deal a month would be worth." />
+  <meta name="robots" content="noindex" />
+  <meta name="theme-color" content="#0a0908" />
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png" />
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,500&family=Inter:wght@400;500;600&display=swap" />
+  <style>
+    :root {
+      --bg: #0a0908;
+      --bg-elev: #14110d;
+      --bg-card: #1a1611;
+      --fg: #f2ecd9;
+      --fg-soft: #c0b59c;
+      --fg-dim: #877c69;
+      --accent: #d4af37;
+      --accent-bright: #e9c860;
+      --accent-deep: #8a7124;
+      --rule: rgba(212, 175, 55, 0.14);
+      --serif: 'Fraunces', ui-serif, Georgia, Cambria, serif;
+      --sans: 'Inter', ui-sans-serif, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    }
+    * { box-sizing: border-box; }
+    html, body { margin: 0; padding: 0; background: var(--bg); color: var(--fg); overflow-x: hidden; }
+    body {
+      font-family: var(--sans);
+      font-size: 17px;
+      line-height: 1.5;
+      -webkit-font-smoothing: antialiased;
+      -webkit-text-size-adjust: 100%;
+    }
+    .wrap { max-width: 540px; margin: 0 auto; padding: 28px 18px 48px; }
+    .eyebrow {
+      font-size: 12px; letter-spacing: 0.16em; text-transform: uppercase;
+      color: var(--fg-dim); margin: 0 0 14px;
+    }
+    h1 {
+      font-family: var(--serif); font-weight: 400;
+      font-variation-settings: "opsz" 36;
+      font-size: clamp(32px, 9vw, 44px); line-height: 1.08;
+      margin: 0 0 12px; letter-spacing: -0.01em;
+    }
+    .sub { color: var(--fg-soft); margin: 0 0 24px; }
+
+    .team { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 8px; margin: 0 0 22px; }
+    .team button {
+      font: 500 16px var(--sans); color: var(--fg-soft);
+      background: var(--bg-elev); border: 1px solid var(--rule);
+      border-radius: 12px; padding: 13px 10px; cursor: pointer;
+    }
+    .team button[aria-pressed="true"] {
+      color: var(--bg); background: var(--accent); border-color: var(--accent);
+    }
+
+    .field { background: var(--bg-elev); border: 1px solid var(--rule); border-radius: 14px; padding: 14px 16px; margin: 0 0 10px; }
+    .field label { display: block; font-weight: 500; margin: 0 0 8px; }
+    .field .hint { display: block; font-size: 14px; color: var(--fg-dim); margin: -4px 0 10px; }
+    .money { display: flex; align-items: center; gap: 6px; }
+    .money span { font-family: var(--serif); font-size: 28px; color: var(--fg-dim); }
+    input {
+      width: 100%; font: 400 28px var(--serif); font-variation-settings: "opsz" 36;
+      color: var(--fg); background: transparent; border: 0; outline: none; padding: 2px 0;
+      -moz-appearance: textfield; min-width: 0;
+    }
+    input::placeholder { color: #4d4538; }
+    input::-webkit-outer-spin-button, input::-webkit-inner-spin-button { -webkit-appearance: none; margin: 0; }
+    .stepper { display: grid; grid-template-columns: 52px minmax(0, 1fr) 52px; align-items: center; gap: 8px; }
+    .stepper input { text-align: center; }
+    .stepper button {
+      height: 48px; border-radius: 12px; border: 1px solid var(--rule);
+      background: var(--bg-card); color: var(--accent); font: 500 26px var(--sans); cursor: pointer;
+      line-height: 1;
+    }
+    .stepper button:active { background: #241e16; }
+
+    .result { margin: 22px 0 0; border: 1px solid rgba(212, 175, 55, 0.35); border-radius: 16px; padding: 22px 18px; background: linear-gradient(180deg, #17130d, #100d0a); }
+    .result .k { color: var(--fg-soft); margin: 0 0 4px; }
+    .big {
+      font-family: var(--serif); font-weight: 400; font-variation-settings: "opsz" 36;
+      font-size: clamp(48px, 15vw, 72px); line-height: 1; color: var(--accent-bright);
+      margin: 6px 0 10px; letter-spacing: -0.02em; font-variant-numeric: lining-nums tabular-nums;
+    }
+    .line { margin: 4px 0; }
+    .line b { font-weight: 600; color: var(--fg); }
+    .rule { height: 1px; background: var(--rule); margin: 18px 0; border: 0; }
+    .q { font-family: var(--serif); font-size: 22px; line-height: 1.25; margin: 0 0 8px; font-variation-settings: "opsz" 36; }
+    .compare { margin: 16px 0 0; padding: 12px 14px; border-radius: 12px; background: rgba(212, 175, 55, 0.10); color: var(--fg); font-weight: 500; }
+    .empty { color: var(--fg-dim); margin: 0; }
+    .note { color: var(--fg-dim); font-size: 14px; margin: 8px 0 0; }
+    .small { font-size: 13px; color: var(--fg-dim); margin: 18px 0 0; }
+    .apply {
+      display: block; text-align: center; margin: 20px 0 0; padding: 16px; border-radius: 14px;
+      background: var(--accent); color: var(--bg); font-weight: 600; text-decoration: none;
+    }
+    footer { margin: 34px 0 0; font-size: 13px; color: var(--fg-dim); text-align: center; }
+    footer a { color: var(--fg-dim); }
+    [hidden] { display: none !important; }
+  </style>
+</head>
+<body>
+  <main class="wrap">
+    <p class="eyebrow">Supreme Synergy Coaching</p>
+    <h1>What did your bagel weeks cost?</h1>
+    <p class="sub">Four numbers. Nothing you type is saved or sent; it stays on your phone.</p>
+
+    <div class="team" role="group" aria-label="What you sell">
+      <button type="button" data-team="solar" aria-pressed="true">I sell solar</button>
+      <button type="button" data-team="insurance" aria-pressed="false">I sell life insurance</button>
+    </div>
+
+    <div class="field">
+      <label for="c">What does one <span data-w="deal">deal</span> pay you?</label>
+      <div class="money"><span>$</span><input id="c" type="text" inputmode="numeric" autocomplete="off" placeholder="Your commission" /></div>
+    </div>
+
+    <div class="field">
+      <label for="n"><span data-w="Deals">Deals</span> in a normal week</label>
+      <div class="stepper">
+        <button type="button" data-step="n" data-d="-1" aria-label="Less">−</button>
+        <input id="n" type="number" inputmode="numeric" min="0" max="99" value="0" />
+        <button type="button" data-step="n" data-d="1" aria-label="More">+</button>
+      </div>
+    </div>
+
+    <div class="field">
+      <label for="b"><span data-w="Deals">Deals</span> in a bagel week</label>
+      <span class="hint">A bagel week ends with a zero on the board, or close to it.</span>
+      <div class="stepper">
+        <button type="button" data-step="b" data-d="-1" aria-label="Less">−</button>
+        <input id="b" type="number" inputmode="numeric" min="0" max="99" value="0" />
+        <button type="button" data-step="b" data-d="1" aria-label="More">+</button>
+      </div>
+    </div>
+
+    <div class="field">
+      <label for="w">Bagel weeks in the last 12 months</label>
+      <div class="stepper">
+        <button type="button" data-step="w" data-d="-1" aria-label="Less">−</button>
+        <input id="w" type="number" inputmode="numeric" min="0" max="52" value="0" />
+        <button type="button" data-step="w" data-d="1" aria-label="More">+</button>
+      </div>
+    </div>
+
+    <section class="result" aria-live="polite">
+      <p class="empty" id="empty">Fill in all four to see your number.</p>
+      <div id="out" hidden>
+        <p class="k">Last year, your bagel weeks cost you about</p>
+        <div class="big" id="cost">$0</div>
+        <p class="line">That's <b id="lost">0 deals</b>, if those weeks had been normal weeks.</p>
+        <p class="line">Over three years at the same pace: <b id="cost3">$0</b>.</p>
+        <p class="note" id="clamp" hidden>Your bagel week can't beat your normal week, so it counts as zero lost.</p>
+        <hr class="rule" />
+        <p class="q">Now the other side. What would one extra <span data-w="deal">deal</span> a month be worth?</p>
+        <p class="line"><b id="gain">$0</b> a year. <b id="gain3">$0</b> over three.</p>
+        <p class="compare" id="compare" hidden></p>
+        <p class="small">Your numbers, your estimate. An illustration, not a promise. Your results will vary.</p>
+      </div>
+      <a class="apply" id="apply" href="#" hidden>Apply for one of the five spots</a>
+    </section>
+
+    <footer>Supreme Synergy · <a href="/">supremesynergy.org</a></footer>
+  </main>
+
+  <script>
+    (function () {
+      // Set when the application form exists; the button stays hidden until then.
+      var APPLY_URL = '';
+      var TEAMS = {
+        solar: { deal: 'deal', deals: 'deals', Deals: 'Deals', compare: "Coaching costs one deal's commission." },
+        insurance: { deal: 'policy', deals: 'policies', Deals: 'Policies', compare: '' }
+      };
+      var team = 'solar';
+      var $ = function (id) { return document.getElementById(id); };
+      var money = new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD', maximumFractionDigits: 0 });
+      var MAX = { n: 99, b: 99, w: 52 };
+
+      function digits(v) { var d = String(v || '').replace(/[^0-9]/g, ''); return d ? Math.min(parseInt(d, 10), 1000000) : 0; }
+      function count(id) { var v = digits($(id).value); return Math.min(v, MAX[id]); }
+      function plural(k, word) { return k === 1 ? TEAMS[team].deal : TEAMS[team][word]; }
+
+      function setTeam(t) {
+        team = TEAMS[t] ? t : 'solar';
+        document.querySelectorAll('.team button').forEach(function (b) {
+          b.setAttribute('aria-pressed', String(b.dataset.team === team));
+        });
+        document.querySelectorAll('[data-w]').forEach(function (el) { el.textContent = TEAMS[team][el.dataset.w]; });
+        render();
+      }
+
+      function render() {
+        var c = digits($('c').value), n = count('n'), b = count('b'), w = count('w');
+        var ready = c > 0 && n > 0 && w > 0;
+        $('empty').hidden = ready;
+        $('out').hidden = !ready;
+        if (!ready) return;
+        var perWeek = Math.max(n - b, 0);
+        var lost = perWeek * w;
+        $('clamp').hidden = b <= n;
+        $('cost').textContent = money.format(lost * c);
+        $('lost').textContent = lost + ' ' + plural(lost, 'deals');
+        $('cost3').textContent = money.format(lost * c * 3);
+        $('gain').textContent = money.format(c * 12);
+        $('gain3').textContent = money.format(c * 36);
+        var cmp = TEAMS[team].compare;
+        $('compare').hidden = !cmp;
+        $('compare').textContent = cmp;
+      }
+
+      document.querySelectorAll('.team button').forEach(function (btn) {
+        btn.addEventListener('click', function () { setTeam(btn.dataset.team); });
+      });
+      document.querySelectorAll('[data-step]').forEach(function (btn) {
+        btn.addEventListener('click', function () {
+          var id = btn.dataset.step;
+          $(id).value = Math.max(0, Math.min(MAX[id], count(id) + parseInt(btn.dataset.d, 10)));
+          render();
+        });
+      });
+      ['n', 'b', 'w'].forEach(function (id) { $(id).addEventListener('input', render); });
+      $('c').addEventListener('input', render);
+      $('c').addEventListener('blur', function () { var v = digits(this.value); this.value = v ? v.toLocaleString('en-US') : ''; });
+      $('c').addEventListener('focus', function () { var v = digits(this.value); this.value = v ? String(v) : ''; });
+
+      if (APPLY_URL) { $('apply').href = APPLY_URL; $('apply').hidden = false; }
+
+      // Optional prefill for the on-screen demo: /bagel?team=insurance&c=900&n=3&b=0&w=10
+      var q = new URLSearchParams(location.search);
+      if (q.get('c')) $('c').value = digits(q.get('c')).toLocaleString('en-US');
+      ['n', 'b', 'w'].forEach(function (id) { if (q.get(id)) $(id).value = Math.min(digits(q.get(id)), MAX[id]); });
+      setTeam(q.get('team') || 'solar');
+    })();
+  </script>
+</body>
+</html>
