@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>What did your bagel weeks cost? · Supreme Synergy</title>
-  <meta name="description" content="Four numbers: what the coaster cost you last year, and what one extra deal a month would be worth." />
+  <meta name="description" content="Three numbers: what the coaster cost you last year, and what one extra deal a month would be worth." />
   <meta name="robots" content="noindex" />
   <meta name="theme-color" content="#0a0908" />
   <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png" />
@@ -108,7 +108,7 @@
   <main class="wrap">
     <p class="eyebrow">Supreme Synergy Coaching</p>
     <h1>What did your bagel weeks cost?</h1>
-    <p class="sub">Four numbers. Nothing you type is saved or sent; it stays on your phone.</p>
+    <p class="sub">Three numbers. Nothing you type is saved or sent; it stays on your phone.</p>
 
     <div class="team" role="group" aria-label="What you sell">
       <button type="button" data-team="solar" aria-pressed="true">I sell solar</button>
@@ -130,17 +130,8 @@
     </div>
 
     <div class="field">
-      <label for="b"><span data-w="Deals">Deals</span> in a bagel week</label>
-      <span class="hint">A bagel week ends with a zero on the board, or close to it.</span>
-      <div class="stepper">
-        <button type="button" data-step="b" data-d="-1" aria-label="Less">−</button>
-        <input id="b" type="number" inputmode="numeric" min="0" max="99" value="0" />
-        <button type="button" data-step="b" data-d="1" aria-label="More">+</button>
-      </div>
-    </div>
-
-    <div class="field">
       <label for="w">Bagel weeks in the last 12 months</label>
+      <span class="hint">A bagel week ends with a zero on the board.</span>
       <div class="stepper">
         <button type="button" data-step="w" data-d="-1" aria-label="Less">−</button>
         <input id="w" type="number" inputmode="numeric" min="0" max="52" value="0" />
@@ -149,13 +140,12 @@
     </div>
 
     <section class="result" aria-live="polite">
-      <p class="empty" id="empty">Fill in all four to see your number.</p>
+      <p class="empty" id="empty">Fill in all three to see your number.</p>
       <div id="out" hidden>
         <p class="k">Last year, your bagel weeks cost you about</p>
         <div class="big" id="cost">$0</div>
         <p class="line">That's <b id="lost">0 deals</b>, if those weeks had been normal weeks.</p>
         <p class="line">Over three years at the same pace: <b id="cost3">$0</b>.</p>
-        <p class="note" id="clamp" hidden>Your bagel week can't beat your normal week, so it counts as zero lost.</p>
         <hr class="rule" />
         <p class="q">Now the other side. What would one extra <span data-w="deal">deal</span> a month be worth?</p>
         <p class="line"><b id="gain">$0</b> a year. <b id="gain3">$0</b> over three.</p>
@@ -179,7 +169,7 @@
       var team = 'solar';
       var $ = function (id) { return document.getElementById(id); };
       var money = new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD', maximumFractionDigits: 0 });
-      var MAX = { n: 99, b: 99, w: 52 };
+      var MAX = { n: 99, w: 52 };
 
       function digits(v) { var d = String(v || '').replace(/[^0-9]/g, ''); return d ? Math.min(parseInt(d, 10), 1000000) : 0; }
       function count(id) { var v = digits($(id).value); return Math.min(v, MAX[id]); }
@@ -195,14 +185,12 @@
       }
 
       function render() {
-        var c = digits($('c').value), n = count('n'), b = count('b'), w = count('w');
+        var c = digits($('c').value), n = count('n'), w = count('w');
         var ready = c > 0 && n > 0 && w > 0;
         $('empty').hidden = ready;
         $('out').hidden = !ready;
         if (!ready) return;
-        var perWeek = Math.max(n - b, 0);
-        var lost = perWeek * w;
-        $('clamp').hidden = b <= n;
+        var lost = n * w;
         $('cost').textContent = money.format(lost * c);
         $('lost').textContent = lost + ' ' + plural(lost, 'deals');
         $('cost3').textContent = money.format(lost * c * 3);
@@ -223,17 +211,17 @@
           render();
         });
       });
-      ['n', 'b', 'w'].forEach(function (id) { $(id).addEventListener('input', render); });
+      ['n', 'w'].forEach(function (id) { $(id).addEventListener('input', render); });
       $('c').addEventListener('input', render);
       $('c').addEventListener('blur', function () { var v = digits(this.value); this.value = v ? v.toLocaleString('en-US') : ''; });
       $('c').addEventListener('focus', function () { var v = digits(this.value); this.value = v ? String(v) : ''; });
 
       if (APPLY_URL) { $('apply').href = APPLY_URL; $('apply').hidden = false; }
 
-      // Optional prefill for the on-screen demo: /bagel?team=insurance&c=900&n=3&b=0&w=10
+      // Optional prefill for the on-screen demo: /bagel?team=insurance&c=900&n=3&w=10
       var q = new URLSearchParams(location.search);
       if (q.get('c')) $('c').value = digits(q.get('c')).toLocaleString('en-US');
-      ['n', 'b', 'w'].forEach(function (id) { if (q.get(id)) $(id).value = Math.min(digits(q.get(id)), MAX[id]); });
+      ['n', 'w'].forEach(function (id) { if (q.get(id)) $(id).value = Math.min(digits(q.get(id)), MAX[id]); });
       setTeam(q.get('team') || 'solar');
     })();
   </script>
