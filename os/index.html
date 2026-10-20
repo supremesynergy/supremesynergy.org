@@ -1,0 +1,151 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Choose your program · Supreme Synergy</title>
+  <meta name="description" content="Supreme Synergy Coaching: OS Foundations and OS Mastery." />
+  <meta name="robots" content="noindex" />
+  <meta name="theme-color" content="#0a0908" />
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png" />
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,500&family=Inter:wght@400;500;600&display=swap" />
+  <style>
+    :root {
+      --bg: #0a0908;
+      --bg-elev: #14110d;
+      --bg-card: #1a1611;
+      --fg: #f2ecd9;
+      --fg-soft: #c0b59c;
+      --fg-dim: #877c69;
+      --accent: #d4af37;
+      --accent-bright: #e9c860;
+      --accent-deep: #8a7124;
+      --rule: rgba(212, 175, 55, 0.14);
+      --serif: 'Fraunces', ui-serif, Georgia, Cambria, serif;
+      --sans: 'Inter', ui-sans-serif, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    }
+    * { box-sizing: border-box; }
+    html, body { margin: 0; padding: 0; background: var(--bg); color: var(--fg); overflow-x: hidden; }
+    body {
+      font-family: var(--sans);
+      font-size: 17px;
+      line-height: 1.5;
+      -webkit-font-smoothing: antialiased;
+      -webkit-text-size-adjust: 100%;
+    }
+    .wrap { max-width: 540px; margin: 0 auto; padding: 28px 18px 48px; }
+    .eyebrow {
+      font-size: 12px; letter-spacing: 0.16em; text-transform: uppercase;
+      color: var(--fg-dim); margin: 0 0 14px;
+    }
+    h1 {
+      font-family: var(--serif); font-weight: 400;
+      font-variation-settings: "opsz" 36;
+      font-size: clamp(32px, 9vw, 44px); line-height: 1.08;
+      margin: 0 0 12px; letter-spacing: -0.01em;
+    }
+    .sub { color: var(--fg-soft); margin: 0 0 24px; }
+
+    
+    .card { background: var(--bg-elev); border: 1px solid var(--rule); border-radius: 16px; padding: 20px 18px; margin: 0 0 14px; }
+    .card.best { border-color: rgba(212, 175, 55, 0.45); background: linear-gradient(180deg, #17130d, #100d0a); }
+    .card h2 { font-family: var(--serif); font-weight: 400; font-size: 26px; margin: 0 0 2px; font-variation-settings: "opsz" 36; }
+    .card .len { color: var(--fg-dim); font-size: 14px; letter-spacing: 0.08em; text-transform: uppercase; margin: 0 0 12px; }
+    .price { font-family: var(--serif); font-size: 44px; line-height: 1; color: var(--accent-bright); margin: 0 0 6px; font-variant-numeric: lining-nums; }
+    .price s { color: var(--fg-dim); font-size: 28px; margin-right: 10px; }
+    .why { color: var(--fg-soft); margin: 0 0 14px; }
+    ul { margin: 0 0 16px; padding-left: 20px; }
+    li { margin: 4px 0; }
+    .btn { display: block; text-align: center; padding: 16px; border-radius: 14px; background: var(--accent); color: var(--bg); font-weight: 600; text-decoration: none; font-size: 17px; }
+    .btn[aria-disabled="true"] { background: var(--bg-card); color: var(--fg-dim); pointer-events: none; }
+    .alt { display: block; text-align: center; margin: 10px 0 0; color: var(--fg-soft); font-size: 15px; }
+    .banner { border-radius: 12px; padding: 12px 14px; margin: 0 0 18px; background: rgba(212, 175, 55, 0.12); color: var(--fg); font-weight: 500; }
+    .box { border-top: 1px solid var(--rule); padding: 18px 0 0; margin: 22px 0 0; }
+    .box h3 { font-family: var(--serif); font-weight: 400; font-size: 21px; margin: 0 0 8px; }
+    .box p, .box ol { color: var(--fg-soft); margin: 0 0 8px; }
+    ol { padding-left: 20px; } ol li { margin: 6px 0; }
+    .small { font-size: 13px; color: var(--fg-dim); margin: 22px 0 0; }
+    footer { margin: 34px 0 0; font-size: 13px; color: var(--fg-dim); text-align: center; }
+    footer a { color: var(--fg-dim); }
+    [hidden] { display: none !important; }
+  </style>
+</head>
+<body>
+  <main class="wrap">
+    <p class="eyebrow">Supreme Synergy Coaching</p>
+    <h1>Choose your program.</h1>
+    <p class="sub">For reps who’ve had their strategy call with me. You pay securely on Stripe, by card or US bank account.</p>
+    <p class="banner" id="banner" hidden></p>
+
+    <section class="card best">
+      <h2>OS Foundations</h2>
+      <p class="len">12 weeks · one to one</p>
+      <p class="price" id="fprice">$5,000</p>
+      <p class="why">One deal’s commission. Twelve weeks running the Hero Loop with me.</p>
+      <ul>
+        <li>Twelve one-hour calls, one to one</li>
+        <li>A text line between calls</li>
+        <li>Your Hero Loop test in week one, and every four weeks</li>
+        <li>The nightly two-minute sheet</li>
+        <li>Bagel-Week Rescue calls</li>
+        <li>3 bonuses: the Flow State Ritual, the Lazer Meditation Method, the 7 Fear-Setting Questions</li>
+      </ul>
+      <a class="btn" id="fbtn" href="#" aria-disabled="true">Yes, I’m in</a>
+    </section>
+
+    <section class="card">
+      <h2>OS Mastery</h2>
+      <p class="len">12 months · one to one</p>
+      <p class="price">$10,000</p>
+      <p class="why">Two deals. Twelve months for the price of six. Everything in OS Foundations, for a full year.</p>
+      <a class="btn" id="mbtn" href="#" aria-disabled="true">Yes, I’m in for the year</a>
+      <a class="alt" id="mmon" href="#" hidden>Or 12 payments of $1,000</a>
+    </section>
+
+    <div class="box">
+      <h3>The Informed Decision guarantee</h3>
+      <p>Come to your first four sessions. If before your fifth you don’t believe it’ll work for you, I refund every dollar.</p>
+    </div>
+
+    <div class="box">
+      <h3>What happens next</h3>
+      <ol>
+        <li>Pay on Stripe’s secure page.</li>
+        <li>You land on your welcome page, with one thing to do tonight.</li>
+        <li>I text you within the hour to book session one.</li>
+      </ol>
+    </div>
+
+    <p class="small">Coaching, not a promise of income. Individual results vary. Questions? Reply to my text.</p>
+
+    <footer>Supreme Synergy · <a href="/">supremesynergy.org</a></footer>
+  </main>
+  <script>
+    (function () {
+      // Paste the Stripe payment links here once they exist; buttons stay disabled until then.
+      var FOUNDATIONS_URL = 'https://buy.stripe.com/dRmfZh3t44xlfiCg8677O02';
+      var MASTERY_URL = 'https://buy.stripe.com/aFabJ13t47Jx7Qaf4277O03';
+      var MASTERY_MONTHLY_URL = '';
+      var CODES = { ADDISON: { off: 1000, until: Date.parse('2026-10-21T19:00:00Z'), label: 'Wednesday noon Pacific' } };
+      var $ = function (id) { return document.getElementById(id); };
+      function arm(el, url) { if (url) { el.href = url; el.removeAttribute('aria-disabled'); el.hidden = false; } }
+
+      var code = (new URLSearchParams(location.search).get('code') || '').toUpperCase();
+      var deal = CODES[code] && Date.now() < CODES[code].until ? CODES[code] : null;
+      var f = FOUNDATIONS_URL;
+      if (deal) {
+        $('fprice').innerHTML = '<s>$5,000</s>$' + (5000 - deal.off).toLocaleString('en-US');
+        $('banner').textContent = 'Code ' + code + ': $' + deal.off.toLocaleString('en-US') + ' off OS Foundations, until ' + deal.label + '. It’s already applied.';
+        $('banner').hidden = false;
+        if (f) f += (f.indexOf('?') < 0 ? '?' : '&') + 'prefilled_promo_code=' + encodeURIComponent(code);
+      }
+      arm($('fbtn'), f);
+      arm($('mbtn'), MASTERY_URL);
+      arm($('mmon'), MASTERY_MONTHLY_URL);
+    })();
+  </script>
+</body>
+</html>
