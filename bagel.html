@@ -117,7 +117,8 @@
 
     <div class="field">
       <label for="c">What does one <span data-w="deal">deal</span> pay you?</label>
-      <div class="money"><span>$</span><input id="c" type="text" inputmode="numeric" autocomplete="off" placeholder="Your commission" /></div>
+      <div class="money"><span>$</span><input id="c" type="text" inputmode="numeric" autocomplete="off" placeholder="Your commission" value="5,000" /></div>
+      <span class="hint">Change it if yours is different.</span>
     </div>
 
     <div class="field">
@@ -163,8 +164,8 @@
       // Set when the application form exists; the button stays hidden until then.
       var APPLY_URL = '';
       var TEAMS = {
-        solar: { deal: 'deal', deals: 'deals', Deals: 'Deals', compare: "Coaching costs one deal's commission." },
-        insurance: { deal: 'policy', deals: 'policies', Deals: 'Policies', compare: '' }
+        solar: { deal: 'deal', deals: 'deals', Deals: 'Deals', compare: "Coaching costs one deal's commission.", c: 5000 },
+        insurance: { deal: 'policy', deals: 'policies', Deals: 'Policies', compare: '', c: 0 }
       };
       var team = 'solar';
       var $ = function (id) { return document.getElementById(id); };
@@ -176,7 +177,10 @@
       function plural(k, word) { return k === 1 ? TEAMS[team].deal : TEAMS[team][word]; }
 
       function setTeam(t) {
+        var was = TEAMS[team].c, cur = digits($('c').value);
         team = TEAMS[t] ? t : 'solar';
+        // Swap the default commission only if they haven't typed their own.
+        if (!cur || cur === was) $('c').value = TEAMS[team].c ? TEAMS[team].c.toLocaleString('en-US') : '';
         document.querySelectorAll('.team button').forEach(function (b) {
           b.setAttribute('aria-pressed', String(b.dataset.team === team));
         });
