@@ -133,7 +133,9 @@
       var $ = function (id) { return document.getElementById(id); };
       function arm(el, url) { if (url) { el.href = url; el.removeAttribute('aria-disabled'); el.hidden = false; } }
 
-      var code = (new URLSearchParams(location.search).get('code') || '').toUpperCase();
+      // This week's room gets the deal on plain /os; ?code=... still overrides.
+      var DEFAULT_CODE = 'ADDISON';
+      var code = (new URLSearchParams(location.search).get('code') || DEFAULT_CODE).toUpperCase();
       var deal = CODES[code] && Date.now() < CODES[code].until ? CODES[code] : null;
       var f = FOUNDATIONS_URL;
       if (deal) {
