@@ -77,14 +77,14 @@
   <main class="wrap">
     <p class="eyebrow">Supreme Synergy Coaching</p>
     <h1>You’re in.</h1>
-    <p class="sub">Welcome. Your receipt is on its way from Stripe. Here’s what happens next.</p>
+    <p class="sub">Welcome. Your receipt is on its way from Stripe. Here’s what happens now.</p>
 
     <section class="card best">
       <ol>
-        <li><b>Watch for my text</b> within the hour. We’ll book session one.</li>
-        <li><b>Tonight, two minutes.</b> Write down one thing that drained you today, and one thing that worked. Then answer one question: <i>what would I love, one year from now?</i></li>
-        <li><b>Bring it to session one.</b> That’s where we start.</li>
+        <li id="book-step"><b>Watch for my text</b> within the hour. We’ll book session one, so save the number.</li>
+        <li><b>Your Rescue line is open, starting now.</b> If you feel a bagel week coming, text that number RESCUE and we’ll get on a call.</li>
       </ol>
+      <a class="btn" id="book" href="#" hidden>Pick my time for session one</a>
     </section>
 
     <div class="box">
@@ -94,5 +94,17 @@
 
     <footer>Supreme Synergy · <a href="/">supremesynergy.org</a></footer>
   </main>
+  <script>
+    (function () {
+      // Paste the "Session One" booking page link here; until then the page says I'll text to book.
+      var BOOK_URL = '';
+      if (!BOOK_URL) return;
+      var step = document.getElementById('book-step');
+      step.innerHTML = '<b>Book session one now.</b> One hour on Google Meet. Pick the time that works for you.';
+      step.insertAdjacentHTML('afterend', '<li><b>Watch for my text</b> within the hour, and save the number.</li>');
+      var b = document.getElementById('book');
+      b.href = BOOK_URL; b.hidden = false;
+    })();
+  </script>
 </body>
 </html>
