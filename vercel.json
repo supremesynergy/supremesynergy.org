@@ -2,6 +2,18 @@
   "$schema": "https://openapi.vercel.sh/vercel.json",
   "cleanUrls": true,
   "trailingSlash": false,
+  "redirects": [
+    {
+      "source": "/call",
+      "destination": "https://calendar.app.google/dXFrBcwRA1i65nGs8",
+      "permanent": false
+    },
+    {
+      "source": "/start",
+      "destination": "https://calendar.google.com/calendar/appointments/schedules/AcZssZ13LAOwfl97s2LfXZQkC5J3_Kog0FCbajIIiN7Y6Jwj9L7pgcF5g845GesAFrmgRk-2PR6hTDHs",
+      "permanent": false
+    }
+  ],
   "rewrites": [
     {
       "source": "/map",
