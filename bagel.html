@@ -23,6 +23,8 @@
       --accent: #d4af37;
       --accent-bright: #e9c860;
       --accent-deep: #8a7124;
+      --loss: #f25a5a;
+      --gain: #46d17f;
       --rule: rgba(212, 175, 55, 0.14);
       --serif: 'Fraunces', ui-serif, Georgia, Cambria, serif;
       --sans: 'Inter', ui-sans-serif, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
@@ -87,8 +89,14 @@
       font-size: clamp(48px, 15vw, 72px); line-height: 1; color: var(--accent-bright);
       margin: 6px 0 10px; letter-spacing: -0.02em; font-variant-numeric: lining-nums tabular-nums;
     }
+    .big.loss { color: var(--loss); }
+    .big.gain { color: var(--gain); font-size: clamp(42px, 12vw, 60px); margin-top: 10px; }
+    .big .emo { font-size: 0.8em; vertical-align: 0.04em; margin-right: 0.12em; }
+    .big .per { font-family: var(--sans); font-size: 0.32em; color: var(--fg-soft); letter-spacing: 0; margin-left: 0.25em; }
     .line { margin: 4px 0; }
     .line b { font-weight: 600; color: var(--fg); }
+    .line b.loss { color: var(--loss); }
+    .line b.gain { color: var(--gain); font-size: 1.15em; }
     .rule { height: 1px; background: var(--rule); margin: 18px 0; border: 0; }
     .q { font-family: var(--serif); font-size: 22px; line-height: 1.25; margin: 0 0 8px; font-variation-settings: "opsz" 36; }
     .compare { margin: 16px 0 0; padding: 12px 14px; border-radius: 12px; background: rgba(212, 175, 55, 0.10); color: var(--fg); font-weight: 500; }
@@ -138,12 +146,13 @@
       <p class="empty" id="empty">Fill in all three to see your number.</p>
       <div id="out" hidden>
         <p class="k">Last year, your bagel weeks cost you about</p>
-        <div class="big" id="cost">$0</div>
+        <div class="big loss"><span class="emo" aria-hidden="true">🩸</span><span id="cost">$0</span></div>
         <p class="line">That's <b id="lost">0 deals</b>, if those weeks had been normal weeks.</p>
-        <p class="line">Over three years at the same pace: <b id="cost3">$0</b>.</p>
+        <p class="line">Over three years at the same pace: <b class="loss" id="cost3">$0</b>.</p>
         <hr class="rule" />
         <p class="q">Now the other side. What would one extra <span data-w="deal">deal</span> a month be worth?</p>
-        <p class="line"><b id="gain">$0</b> a year. <b id="gain3">$0</b> over three.</p>
+        <div class="big gain"><span class="emo" aria-hidden="true">💰</span><span id="gain">$0</span><span class="per">a year</span></div>
+        <p class="line"><b class="gain" id="gain3">$0</b> over three years.</p>
         <p class="compare" id="compare" hidden></p>
         <p class="small">Your numbers, your estimate. An illustration, not a promise. Your results will vary.</p>
       </div>
@@ -158,7 +167,7 @@
       // Set when the application form exists; the button stays hidden until then.
       var APPLY_URL = '';
       var TEAMS = {
-        solar: { deal: 'deal', deals: 'deals', Deals: 'Deals', compare: "Coaching costs one deal's commission.", c: 5000 },
+        solar: { deal: 'deal', deals: 'deals', Deals: 'Deals', compare: "Coaching costs just one deal's commission.", c: 5000 },
         insurance: { deal: 'policy', deals: 'policies', Deals: 'Policies', compare: '', c: 0 }
       };
       var team = 'solar';
